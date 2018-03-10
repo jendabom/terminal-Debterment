@@ -32,3 +32,6 @@
 
   expense = Expense.new(name: "Netflix", monthly_payment: 12.50, expense_type: "subscription")
   expense.save
+
+  income = Income.new(name: "Betterment", paydays_per_year: 24, amount_per_payday: 1600)
+  income.save

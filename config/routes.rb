@@ -7,4 +7,9 @@ Rails.application.routes.draw do
 
 
   get '/expenses' => 'expenses#index'
+
+
+
+
+  get '/incomes' => 'incomes#index'
 end
