@@ -9,7 +9,8 @@ class Debt < ApplicationRecord
       min_amt_due: min_amt_due,
       min_payment_payoff_months: months_til_paid_off.to_i,
       # due_date: due_date,
-      debt_type: debt_type, 
+      debt_type: debt_type,
+      pay_off_all: first_payoff_total 
       # limit: card_limit
     }
   end
