@@ -18,13 +18,19 @@
   #   t.datetime "updated_at", null: false
   # end
 
-  debt = Debt.new(name: "Bank of America", total_balance: 5000, min_amt_due: 50, apr: 0.20, due_date: "3/15/2018", debt_type: "Credit Card")
+  debt = Debt.new(name: "Bank of America", total_balance: 5000, min_amt_due: 50, apr: 0.20, due_date: "3/15/2018", debt_type: "Credit Card", card_limit: 8000)
   debt.save
 
-  debt = Debt.new(name: "Chase", total_balance: 200, min_amt_due: 25, apr: 0.18, due_date: "3/22/2018", debt_type: "Credit Card")
+  debt = Debt.new(name: "Chase", total_balance: 200, min_amt_due: 25, apr: 0.18, due_date: "3/22/2018", debt_type: "Credit Card", card_limit: 1500)
   debt.save
 
-  debt = Debt.new(name: "Upstart Loan", total_balance: 10000, min_amt_due: 405, apr: 0.18, due_date: "3/22/2018", debt_type: "Credit Card")
+  debt = Debt.new(name: "Amex", total_balance: 650, min_amt_due: 25, apr: 0.18, due_date: "3/25/2018", debt_type: "Credit Card", card_limit: 1000)
+  debt.save
+
+  debt = Debt.new(name: "Citi Bank", total_balance: 400, min_amt_due: 25, apr: 0.18, due_date: "3/22/2018", debt_type: "Credit Card", card_limit: 1500)
+  debt.save
+
+  debt = Debt.new(name: "Upstart Loan", total_balance: 10000, min_amt_due: 405, apr: 0.18, due_date: "3/22/2018", debt_type: "Loan")
   debt.save
 
   expense = Expense.new(name: "Rent", monthly_payment: 1100, expense_type: "living expenses")
