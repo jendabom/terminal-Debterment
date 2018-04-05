@@ -1,4 +1,5 @@
 class Income < ApplicationRecord
+  belongs_to :user
   def as_json
     {
       name: name,

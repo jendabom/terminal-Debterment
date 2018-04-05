@@ -1,4 +1,5 @@
 class Debt < ApplicationRecord
+  belongs_to :user
   def as_json
     {
       name: name,
@@ -10,7 +11,6 @@ class Debt < ApplicationRecord
       min_payment_payoff_months: months_til_paid_off.to_i,
       # due_date: due_date,
       debt_type: debt_type,
-      pay_off_all: first_payoff_total 
       # limit: card_limit
     }
   end
@@ -30,12 +30,12 @@ class Debt < ApplicationRecord
   def payoff_amount
     if debt_type == "Credit Card"
       if total_balance - first_target <= 0
-        return "First target reached."
+        return "First target reached. Pay minimum until all have reached first target."
       else 
         return total_balance - first_target
       end
     else 
-      return "Minimim payments until Credit Cards paid off."
+      return "Minimum payments until Credit Cards paid off."
     end
   end
 
