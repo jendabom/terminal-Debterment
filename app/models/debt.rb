@@ -4,13 +4,13 @@ class Debt < ApplicationRecord
     {
       name: name,
       total_balance: total_balance,
-      first_target: first_target,
-      reach_first_target: payoff_amount, 
+      #first_target: first_target,
+      #reach_first_target: payoff_amount, 
       # apr: apr,
       min_amt_due: min_amt_due,
-      min_payment_payoff_months: months_til_paid_off.to_i,
+      min_payment_payoff_months: months_til_min_only_payoff.to_i,
       # due_date: due_date,
-      debt_type: debt_type,
+      debt_type: debt_type
       # limit: card_limit
     }
   end
@@ -39,8 +39,7 @@ class Debt < ApplicationRecord
     end
   end
 
-  def months_til_paid_off
+  def months_til_min_only_payoff
     total_balance / min_amt_due
   end
-
 end

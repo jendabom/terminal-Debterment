@@ -12,28 +12,47 @@ class Income < ApplicationRecord
     }
   end
 
+  def current_user
+    User.first
+  end
+
   def monthly_income
     (paydays_per_year * amount_per_payday) / 12
   end
 
   def needs_amount
-    monthly_income * 0.5
+    monthly_income * needs_percentage
   end
 
   def wants_amount
-    monthly_income * 0.3
+    monthly_income * wants_percentage
   end
 
   def save_amount
-    monthly_income * 0.2
+    monthly_income * save_percentage
   end
 
   def complete_payoff_total
     Debt.sum(:total_balance)
   end
 
+  def needs_total
+    Expense.sum(:monthly_payment)
+  end
+
   def months_til_paid_off
     complete_payoff_total / save_amount
   end
 
+  def needs_percentage
+    0.5
+  end
+
+  def wants_percentage
+    0.3
+  end
+
+  def save_percentage
+    0.2
+  end
 end
