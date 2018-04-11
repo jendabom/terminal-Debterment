@@ -17,6 +17,7 @@ class IncomesController < ApplicationController
       render json: {errors: income.errors.full_messages}, status: :unprocessible_entity
     end
   end
+  
   def show
     income = Income.find(params[:id])
     render json: income.as_json

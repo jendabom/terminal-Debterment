@@ -14,6 +14,8 @@ while true
   p "[9] Show a single Expense"
   p "[10] Show a single Incomes"
   p "[11] Delete an Expense"
+  p "[12] Login"
+  p "[13] Logout"
 
   user_input = gets.chomp
 
@@ -126,5 +128,26 @@ while true
     p response
     data = response.body
     puts data["message"]
+  elsif user_input == "12"
+    response = Unirest.post(
+      "http://localhost:3000/user_token",
+      parameters: {
+        auth: {
+          email: "jen.blom@gmail.com",
+          password: "password"
+        }
+      }
+    )
+
+    # Save the JSON web token from the response
+    jwt = response.body["jwt"]
+    # Include the jwt in the headers of any future web requests
+    Unirest.default_header("Authorization", "Bearer #{jwt}")
+    user = response.body
+    p user
+  elsif user_input == "13"
+    jwt = ""
+    Unirest.clear_default_headers()
+    p jwt
   end
 end
