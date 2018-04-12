@@ -1,6 +1,6 @@
 class DebtsController < ApplicationController
   def index
-    debts = Debt.all.order(:total_balance)
+    debts = Debt.all
     render json: debts.as_json
   end
 
@@ -31,5 +31,15 @@ class DebtsController < ApplicationController
     debt = Debt.find(params[:id])
     debt.destroy
     render json: {message: "I did the thing and deleted that debt."}
+  end
+
+  def snowball
+    debts = Debt.all.order(:total_balance).where(debt_type: "Credit Card")
+    render json: debts.as_json
+  end
+
+  def avalanche
+    debts = Debt.all.order(apr: :desc).where(debt_type: "Credit Card")
+    render json: debts.as_json
   end
 end

@@ -6,7 +6,7 @@ class Debt < ApplicationRecord
       total_balance: total_balance,
       #first_target: first_target,
       #reach_first_target: payoff_amount, 
-      # apr: apr,
+      apr: display_apr,
       min_amt_due: min_amt_due,
       min_payment_payoff_months: months_til_min_only_payoff.to_i,
       # due_date: due_date,
@@ -42,4 +42,10 @@ class Debt < ApplicationRecord
   def months_til_min_only_payoff
     total_balance / min_amt_due
   end
+
+  def display_apr
+    (apr * 100).to_s + "%"
+  end
 end
+
+
