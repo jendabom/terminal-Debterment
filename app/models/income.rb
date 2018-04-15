@@ -10,7 +10,8 @@ class Income < ApplicationRecord
       complete_payoff_total: complete_payoff_total,
       saving_amount_only_months_til_paid: months_til_paid_off.to_i, 
       min_all_paying_off: min_all_paying_off, 
-      additional_amount: additional_amount
+      additional_amount: additional_amount, 
+      mins_only_monthly_amount: mins_only_monthly_amount
     }
   end
 
@@ -40,6 +41,14 @@ class Income < ApplicationRecord
 
   def needs_total
     Expense.sum(:monthly_payment)
+  end
+
+  def min_amt_CC
+    Debt.sum(:min_amt_due)
+  end
+
+  def mins_only_monthly_amount
+    needs_total + min_amt_CC
   end
 
   def months_til_paid_off
