@@ -34,12 +34,12 @@ class DebtsController < ApplicationController
   end
 
   def snowball
-    debts = Debt.all.order(:total_balance).where(debt_type: "Credit Card")
+    debts = Debt.order(:total_balance).where(debt_type: "Credit Card")
     render json: debts.as_json
   end
 
   def avalanche
-    debts = Debt.all.order(apr: :desc).where(debt_type: "Credit Card")
+    debts = Debt.order(apr: :desc).where(debt_type: "Credit Card")
     render json: debts.as_json
   end
 end

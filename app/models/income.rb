@@ -8,7 +8,9 @@ class Income < ApplicationRecord
       wants_goal: wants_amount,
       save_goal: save_amount,
       complete_payoff_total: complete_payoff_total,
-      saving_amount_only_months_til_paid: months_til_paid_off.to_i
+      saving_amount_only_months_til_paid: months_til_paid_off.to_i, 
+      min_all_paying_off: min_all_paying_off, 
+      additional_amount: additional_amount
     }
   end
 
@@ -54,5 +56,13 @@ class Income < ApplicationRecord
 
   def save_percentage
     0.2
+  end
+
+  def min_all_paying_off
+    Debt.sum(:min_amt_due)
+  end
+
+  def additional_amount
+    save_amount - min_all_paying_off
   end
 end

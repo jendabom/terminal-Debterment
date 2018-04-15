@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My App</title>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.js"></script>
+  <script src="index.js" defer></script>
+</head>
+<body>
+  <div id="vue-app">
+
+    <router-view></router-view>
+
+  </div>
+</body>
+</html>
+
+<template id="home-page">
+  <div class="vue-component">
+
+    <h1>{{ message }}</h1>
+
+  </div>
+</template>
+
+<template id="debt-page">
+  <div class="vue-component">
+
+    <h1>{{ message }}</h1>
+    <div v-for="debt in debts">
+      <h2>{{ debt.name }}</h2>
+      <p>Current Balance: $ {{ debt.total_balance }}.</p>
+      <p>First target: $ {{debt.first_target }}. </p>
+      <p>To reach first target: $ {{ debt.reach_first_target }} </p>
+      <p>The minimum to pay each month is: $ {{ debt.min_amt_due }}</p>
+      <p> This is a {{ debt.debt_type }}.
+    </div>
+
+  </div>
+</template>
+
+<template id="expense-page">
+  <div class="vue-component">
+    <h1>Monthly Expenses:</h1>
+    <div v-for="expense in expenses">
+      <p> {{ expense.name }} - $ {{ expense.monthly_payment }}</p>
+    </div>
+  </div>
+</template>
+
+<template id="income-page">
+  <div class="vue-component">
+    <h1>Monthly incomes:</h1>
+    <div v-for="income in incomes">
+      <h2> {{ income.name }} </h2>
+      <p>$ {{ income.monthly_income }}</p>
+    </div>
+  </div>
+</template>
+
+<template id="snowball-page">
+  <div class="vue-component">
+
+    <h1>{{ message }}</h1>
+    <div v-for="debt,$index in debts">
+      <h2>{{ $index+1 }}. {{ debt.name }}</h2>
+      <p>Your first target is to get the debt under ${{debt.first_target }}. First goal: {{ debt.reach_first_target }} </p>
+      <p>The minimum to pay each month is: ${{ debt.min_amt_due }}</p>
+    </div>
+
+  </div>
+</template>
+
+<template id="avalanche-page">
+  <div class="vue-component">
+
+    <h1>{{ message }}</h1>
+    <div v-for="debt,$index in debts">
+
+      <h2>{{ $index+1 }}. {{ debt.name }}</h2>
+      <p>Your first target is to get the debt under ${{debt.first_target }}. First goal: {{ debt.reach_first_target }} </p>
+      <p>The minimum to pay each month is: ${{ debt.min_amt_due }}</p>
+    </div>
+
+  </div>
+</template>
+
+<template id="add-debt-page">
+  <div class="vue-component">
+    <h1>{{ message }}</h1>
+    <p>Name:<input v-model="newDebt.name"></p>
+    <p>Total Balance:<input v-model="newDebt.total_balance"></p>
+    <p>APR:<input v-model="newDebt.apr"></p>
+    <p>Minimum Amount Due:<input v-model="newDebt.min_amt_due"></p>
+    <p>Due Date:<input v-model="newDebt.due_date"></p>
+    <p>Debt Type:<input v-model="newDebt.debt_type"></p>
+    <p>Card Limit (if Credit Card):<input v-model="newDebt.card_limit"></p>
+    <button v-on:click="addDebt()">Add Debt</button>
+  </div>
+</template>
+
+<template id="add-expense-page">
+  <div class="vue-component">
+    <h1>{{ message }}</h1>
+    <p>Name:<input v-model="newExpense.name"></p>
+    <p>Monthly Payment:<input v-model="newExpense.monthly_payment"></p>
+    <p>Expense Type:<input v-model="newExpense.expense_type"></p>
+    <button v-on:click="addExpense()">Add Debt</button>
+  </div>
+</template>
