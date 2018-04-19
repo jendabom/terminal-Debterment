@@ -11,7 +11,8 @@ class Income < ApplicationRecord
       saving_amount_only_months_til_paid: months_til_paid_off.to_i, 
       min_all_paying_off: min_all_paying_off, 
       additional_amount: additional_amount, 
-      mins_only_monthly_amount: mins_only_monthly_amount
+      mins_only_monthly_amount: mins_only_monthly_amount, 
+      credit_card_debt_total: credit_card_debt_total
     }
   end
 
@@ -39,12 +40,20 @@ class Income < ApplicationRecord
     Debt.sum(:total_balance)
   end
 
+  def credit_card_debt
+    Debt.where(debt_type: "Credit Card")
+  end
+
+  def credit_card_debt_total
+    credit_card_debt.sum(:total_balance)
+  end
+
   def needs_total
     Expense.sum(:monthly_payment)
   end
 
-  def min_amt_CC
-    Debt.sum(:min_amt_due)
+  def min_amt_cc
+    credit_card_debt.sum(:min_amt_due)
   end
 
   def mins_only_monthly_amount

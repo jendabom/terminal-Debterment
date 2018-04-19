@@ -2,7 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>My App</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/vue/dist/vue.js"></script>
   <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
   <script src="https://unpkg.com/axios/dist/axios.js"></script>
@@ -19,15 +24,29 @@
 
 <template id="home-page">
   <div class="vue-component">
-
     <h1>{{ message }}</h1>
-
+    <h2>Debts:</h2>
+    <div v-for="debt in debts">
+      <p>{{ debt.name }} - ${{ debt.min_amt_due }}</p>
+    </div>
+    <hr>
+    <h2>Incomes:</h2>
+    <div v-for="income in incomes">
+      <p>{{ income.name }} ${{ income.monthly_income }}</p>
+    </div>
+    <hr>
+    <h2>Expenses:</h2>
+    <div v-for="expense in expenses">
+      <p>{{ expense.name }}</p>
+    </div>
+    <p>Total Balance: {{ this.total_payoff_amount }}</p>
+    <p>Total Credit Card Debt: {{ this.total_credit_card_balance }}
+    <hr>
   </div>
 </template>
 
 <template id="debt-page">
   <div class="vue-component">
-
     <h1>{{ message }}</h1>
     <div v-for="debt in debts">
       <h2>{{ debt.name }}</h2>
@@ -37,7 +56,6 @@
       <p>The minimum to pay each month is: $ {{ debt.min_amt_due }}</p>
       <p> This is a {{ debt.debt_type }}.
     </div>
-
   </div>
 </template>
 
@@ -45,7 +63,12 @@
   <div class="vue-component">
     <h1>Monthly Expenses:</h1>
     <div v-for="expense in expenses">
-      <p> {{ expense.name }} - $ {{ expense.monthly_payment }}</p>
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">{{ expense.name }}</h5>
+          <p class="card-text"> $ {{ expense.monthly_payment }}</p>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -107,6 +130,17 @@
     <p>Name:<input v-model="newExpense.name"></p>
     <p>Monthly Payment:<input v-model="newExpense.monthly_payment"></p>
     <p>Expense Type:<input v-model="newExpense.expense_type"></p>
-    <button v-on:click="addExpense()">Add Debt</button>
+    <button v-on:click="addExpense()">Add Expense</button>
+  </div>
+</template>
+
+<template id="add-income-page">
+  <div class="vue-component">
+    <h1>{{ message }}</h1>
+    <p>Name:<input v-model="newIncome.name"></p>
+    <p>Amount per payday:<input v-model="newIncome.amount_per_payday"></p>
+    <p>Paydays per Year:<input v-model="newIncome.paydays_per_year"></p>
+    <p>Recurring: <input type="checkbox" id="recurring" v-model="newIncome.recurring"></p>
+    <button v-on:click="addIncome()">Add Income</button>
   </div>
 </template>

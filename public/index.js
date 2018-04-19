@@ -16,6 +16,38 @@ var ExpensePage = {
   computed: {}
 };
 
+var AddIncomePage = {
+  template: "#add-income-page",
+  data: function() {
+    return {
+      message: "Enter a New Income!", 
+      incomes: [],
+      newIncome: {name: "", paydays_per_year: 0, amount_per_payday: 0, recurring: ""}
+    };
+  },
+  created: function() {
+    axios.get("http://localhost:3000/incomes").then(function(response) {
+      this.incomes = response.data;
+    }.bind(this));
+  },
+  methods: {
+    addIncome: function() {
+      var params = {
+        name: this.newIncome.name,
+        paydays_per_year: this.newIncome.paydays_per_year, 
+        amount_per_payday: this.newIncome.amount_per_payday, 
+        recurring: this.newIncome.recurring
+      };
+
+      axios.post("/incomes", params).then(function(response) {
+        this.incomes.push(response.data);
+        this.newIncome = {name: "", paydays_per_year: 0, amount_per_payday: 0, recurring: ""};
+      }.bind(this));
+    }
+  },
+  computed: {}
+};
+
 var AddExpensePage = {
   template: "#add-expense-page",
   data: function() {
@@ -155,11 +187,27 @@ var HomePage = {
   template: "#home-page",
   data: function() {
     return {
-      message: "Welcome to Debterment!", 
+      message: "Welcome to Debterment!",
+      incomes: [], 
+      debts: [], 
+      expenses: [] , 
+      total_payoff_amount: "", 
+      total_credit_card_balance: ""
     };
   },
   created: function() {
-
+    axios.get("http://localhost:3000/debts").then(function(response) {
+      this.debts = response.data;
+    }.bind(this));
+    axios.get("http://localhost:3000/incomes").then(function(response) {
+      this.incomes = response.data;
+      this.total_payoff_amount = response.data[0].complete_payoff_total;
+      this.total_credit_card_balance = response.data[0].credit_card_debt_total;
+      console.log(response.data);
+    }.bind(this));
+    axios.get("http://localhost:3000/expenses").then(function(response) {
+      this.expenses = response.data;
+    }.bind(this));
   },
   methods: {},
   computed: {}
@@ -174,7 +222,9 @@ var router = new VueRouter({
     { path: "/my_snowball", component: SnowballDebtPage },
     { path: "/my_avalanche", component: AvalancheDebtPage },
     { path: "/add_debt", component: AddDebtPage },
-    { path: "/add_expense", component: AddExpensePage }
+    { path: "/add_expense", component: AddExpensePage }, 
+    { path: "/add_income", component: AddIncomePage }
+
   ],
   scrollBehavior: function(to, from, savedPosition) {
     return { x: 0, y: 0 };
