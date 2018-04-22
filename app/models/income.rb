@@ -6,15 +6,19 @@ class Income < ApplicationRecord
       monthly_income: monthly_income,
       total_recurring_income: total_recurring_income, 
       needs_goal_based_on_total: needs_amount,
+      total_needs_expenses: total_needs_expenses,
+      remaining_needs_dollars: remaining_needs_dollars,
       wants_goal_based_on_total: wants_amount,
+      total_wants_expenses: total_wants_expenses,
+      remaining_wants_dollars: remaining_wants_dollars, 
       save_goal_based_on_total: save_amount,
-      saving_amount_only_months_til_paid: months_til_paid_off.to_i, 
+      months_til_min_only_payoff: months_til_min_only_payoff.to_i,
+      Additional_amount_months_til_paid: months_til_paid_off.to_i, 
       min_all_paying_off: min_all_paying_off, 
-      additional_amount: additional_amount, 
-      mins_only_monthly_amount: mins_only_monthly_amount, 
       credit_card_debt_total: credit_card_debt_total,
       other_debt_total: other_debt_total,
-      complete_payoff_total: complete_payoff_total
+      complete_payoff_total: complete_payoff_total,
+      additional_amount: additional_amount 
     }
   end
 
@@ -33,6 +37,18 @@ class Income < ApplicationRecord
       sum += income.monthly_income
     end
     return sum
+  end
+
+  def min_amt_cc
+    credit_card_debt.sum(:min_amt_due)
+  end
+
+  def min_amt_other
+    other_debt.sum(:min_amt_due)
+  end
+
+  def total_needs_expenses
+    expenses = Expense.where(need: true).sum(:monthly_payment)
   end
 
   def needs_amount
@@ -67,20 +83,8 @@ class Income < ApplicationRecord
     other_debt.sum(:total_balance)
   end
 
-  def needs_total
-    Expense.sum(:monthly_payment)
-  end
-
-  def min_amt_cc
-    credit_card_debt.sum(:min_amt_due)
-  end
-
-  def mins_only_monthly_amount
-    needs_total + min_amt_cc
-  end
-
   def months_til_paid_off
-    complete_payoff_total / save_amount
+    complete_payoff_total / (min_all_paying_off + additional_amount)
   end
 
   def needs_percentage
@@ -90,7 +94,6 @@ class Income < ApplicationRecord
   def wants_percentage
     0.3
   end
-
   def save_percentage
     0.2
   end
@@ -99,7 +102,25 @@ class Income < ApplicationRecord
     Debt.sum(:min_amt_due)
   end
 
+  def total_wants_expenses
+    expenses = Expense.where(need: false).sum(:monthly_payment)
+    sum = expenses + min_all_paying_off
+    return sum
+  end
+
+  def remaining_needs_dollars
+    needs_amount - total_needs_expenses
+  end
+
+  def remaining_wants_dollars
+    wants_amount - total_wants_expenses
+  end
+
+  def months_til_min_only_payoff
+    complete_payoff_total / min_all_paying_off
+  end
+
   def additional_amount
-    save_amount - min_all_paying_off
+    remaining_wants_dollars + remaining_needs_dollars + save_amount
   end
 end
