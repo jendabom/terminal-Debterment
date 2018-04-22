@@ -25,22 +25,9 @@
 <template id="home-page">
   <div class="vue-component">
     <h2>{{ message }}</h2>
-    <h4>Debts:</h4>
-    <div v-for="debt in showall[0]['debts']">
-      {{ debt.name }} - ${{ debt.min_amt_due }}
-    </div>
-    <hr>
-    <h4>Incomes:</h4>
-    <div v-for="income in showall[0]['incomes']">
-      {{ income.name }} ${{ income.monthly_income }}
-    </div>
-    <hr>
-    <h4>Expenses:</h4>
-    <div v-for="expense in showall[0]['expenses']">
-      {{ expense.name }} - ${{expense.monthly_payment}}
-    </div>
-    <hr>
     <div><ul>
+    <li>Min Payments each Month: {{ showall[0]['incomes'][0].min_all_paying_off }}</li>
+    <li>Additional Payoff Amount: {{ showall[0]['incomes'][0].additional_amount }}</li>
     <li>Total Debt: {{ showall[0]['incomes'][0].complete_payoff_total }}</li>
     <li>Total Credit Card Debt: {{ showall[0]['incomes'][0].credit_card_debt_total }}</li>
     <li>Non Credit Card Debt Total: {{ showall[0]['incomes'][0].other_debt_total }}</li>

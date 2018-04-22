@@ -211,8 +211,7 @@ var router = new VueRouter({
     { path: "/my_avalanche", component: AvalancheDebtPage },
     { path: "/add_debt", component: AddDebtPage },
     { path: "/add_expense", component: AddExpensePage }, 
-    { path: "/add_income", component: AddIncomePage }
-
+    { path: "/add_income", component: AddIncomePage } 
   ],
   scrollBehavior: function(to, from, savedPosition) {
     return { x: 0, y: 0 };
