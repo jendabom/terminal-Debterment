@@ -188,25 +188,18 @@ var HomePage = {
   data: function() {
     return {
       message: "Welcome to Debterment!",
-      incomes: [], 
-      debts: [], 
-      expenses: [] , 
-      total_payoff_amount: "", 
-      total_credit_card_balance: ""
+      showall: [] 
+      // incomes: [], 
+      // debts: [], 
+      // expenses: [] , 
+      // total_payoff_amount: "", 
+      // total_credit_card_balance: ""
     };
   },
   created: function() {
-    axios.get("http://localhost:3000/debts").then(function(response) {
-      this.debts = response.data;
-    }.bind(this));
-    axios.get("http://localhost:3000/incomes").then(function(response) {
-      this.incomes = response.data;
-      this.total_payoff_amount = response.data[0].complete_payoff_total;
-      this.total_credit_card_balance = response.data[0].credit_card_debt_total;
+    axios.get("/showall").then(function(response) {
       console.log(response.data);
-    }.bind(this));
-    axios.get("http://localhost:3000/expenses").then(function(response) {
-      this.expenses = response.data;
+      this.showall = response.data;
     }.bind(this));
   },
   methods: {},

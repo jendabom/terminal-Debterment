@@ -26,21 +26,22 @@
   <div class="vue-component">
     <h1>{{ message }}</h1>
     <h2>Debts:</h2>
-    <div v-for="debt in debts">
+    <div v-for="debt in showall[0]['debts']">
       <p>{{ debt.name }} - ${{ debt.min_amt_due }}</p>
     </div>
     <hr>
     <h2>Incomes:</h2>
-    <div v-for="income in incomes">
+    <div v-for="income in showall[0]['incomes']">
       <p>{{ income.name }} ${{ income.monthly_income }}</p>
     </div>
     <hr>
     <h2>Expenses:</h2>
-    <div v-for="expense in expenses">
-      <p>{{ expense.name }}</p>
+    <div v-for="expense in showall[0]['expenses']">
+      <p>{{ expense.name }} - ${{expense.monthly_payment}}</p>
     </div>
-    <p>Total Balance: {{ this.total_payoff_amount }}</p>
-    <p>Total Credit Card Debt: {{ this.total_credit_card_balance }}
+    <hr>
+    <p>Total Debt: {{ showall[0]['incomes'][0].complete_payoff_total }}</p>
+    <p>Total Credit Card Debt: {{ showall[0]['incomes'][0].credit_card_debt_total }}</p>
     <hr>
   </div>
 </template>
