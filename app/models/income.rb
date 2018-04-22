@@ -27,7 +27,11 @@ class Income < ApplicationRecord
   end
 
   def monthly_income
-    (paydays_per_year * amount_per_payday) / 12
+    if recurring == true
+      (paydays_per_year * amount_per_payday) / 12
+    else
+      "0"
+    end
   end
 
   def total_recurring_income

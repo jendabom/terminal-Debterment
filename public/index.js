@@ -54,7 +54,7 @@ var AddExpensePage = {
     return {
       message: "Enter a New Expense!", 
       expenses: [],
-      newExpense: {name: "", monthly_payment: 0, expense_type: ""}
+      newExpense: {name: "", monthly_payment: 0, expense_type: "", need: true}
     };
   },
   created: function() {
@@ -72,7 +72,7 @@ var AddExpensePage = {
 
       axios.post("/expenses", params).then(function(response) {
         this.expenses.push(response.data);
-        this.newExpense = {name: "", monthly_payment: 0, expense_type: ""};
+        this.newExpense = {name: "", monthly_payment: 0, expense_type: "", need: true};
       }.bind(this));
     }
   },

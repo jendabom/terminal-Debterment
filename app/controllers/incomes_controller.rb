@@ -5,11 +5,11 @@ class IncomesController < ApplicationController
   end
 
   def show_all
-    all_data = [
+    all_data = {
       incomes: Income.all,
       expenses: Expense.all,
       debts: Debt.all
-    ]
+    }
     render json: all_data.as_json
   end
 

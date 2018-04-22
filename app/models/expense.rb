@@ -4,7 +4,8 @@ class Expense < ApplicationRecord
     {
       name: name, 
       monthly_payment: monthly_payment, 
-      expense_type: expense_type
+      expense_type: expense_type, 
+      need?: need
     }
   end
 end
