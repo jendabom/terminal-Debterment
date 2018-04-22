@@ -189,11 +189,6 @@ var HomePage = {
     return {
       message: "Welcome to Debterment!",
       showall: [] 
-      // incomes: [], 
-      // debts: [], 
-      // expenses: [] , 
-      // total_payoff_amount: "", 
-      // total_credit_card_balance: ""
     };
   },
   created: function() {
