@@ -4,6 +4,15 @@ class IncomesController < ApplicationController
     render json: incomes.as_json
   end
 
+  def show_all
+    all_data = [
+      incomes: Income.all,
+      expenses: Expense.all,
+      debts: Debt.all
+    ]
+    render json: all_data.as_json
+  end
+
   def create
     income = Income.new(
       name: params[:name],

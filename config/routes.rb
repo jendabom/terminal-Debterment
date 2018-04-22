@@ -16,5 +16,7 @@ Rails.application.routes.draw do
   post '/incomes' => 'incomes#create'
   get '/incomes/:id' => 'incomes#show'
 
+  get '/showall' => 'incomes#show_all'
+
   post "/users" => "users#create"
 end
