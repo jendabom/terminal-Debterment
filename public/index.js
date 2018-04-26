@@ -140,7 +140,25 @@ var DebtPage = {
     };
   },
   created: function() {
-    axios.get("http://localhost:3000/debts").then(function(response) {
+    axios.get("/debts").then(function(response) {
+      this.debts = response.data;
+    }.bind(this));
+  },
+  methods: {
+  },
+  computed: {}
+};
+
+var AllDebtPage = {
+  template: "#all-debt-page",
+  data: function() {
+    return {
+      message: "Welcome to Debterment!", 
+      debts: []
+    };
+  },
+  created: function() {
+    axios.get("/alldebts").then(function(response) {
       this.debts = response.data;
     }.bind(this));
   },
@@ -290,7 +308,9 @@ var router = new VueRouter({
     { path: "/add_income", component: AddIncomePage }, 
     { path: "/signup", component: SignupPage },
     { path: "/login", component: LoginPage }, 
-    { path: "/logout", component: LogoutPage } 
+    { path: "/logout", component: LogoutPage }, 
+    { path: "/all_debts", component: AllDebtPage }
+    
   ],
   scrollBehavior: function(to, from, savedPosition) {
     return { x: 0, y: 0 };

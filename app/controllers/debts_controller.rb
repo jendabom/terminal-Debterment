@@ -34,12 +34,19 @@ class DebtsController < ApplicationController
   end
 
   def snowball
-    debts = Debt.order(:total_balance).where(debt_type: "Credit Card")
+    debts = Debt.order(:total_balance).where(user_id: current_user.id, debt_type: "Credit Card")
     render json: debts.as_json
   end
 
   def avalanche
-    debts = Debt.order(apr: :desc).where(debt_type: "Credit Card")
+    debts = Debt.order(apr: :desc).where(user_id: current_user.id, debt_type: "Credit Card")
     render json: debts.as_json
+  end
+
+  def sorted_debts
+    credit_card_debts = Debt.order(apr: :desc).where(user_id: current_user.id, debt_type: "Credit Card")
+    non_credit_card_debts = Debt.where(user_id: current_user.id) && Debt.where.not(debt_type: "Credit Card")
+    all_debts = credit_card_debts + non_credit_card_debts
+    render json: all_debts.as_json
   end
 end

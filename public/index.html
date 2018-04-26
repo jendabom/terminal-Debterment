@@ -54,6 +54,20 @@
   </div>
 </template>
 
+<template id="all-debt-page">
+  <div class="vue-component">
+    <h2>{{ message }}</h2>
+    <div v-for="debt in debts">
+      <h2>{{ debt.name }}</h2>
+      <p>Current Balance: $ {{ debt.total_balance }}.</p>
+      <p>First target: $ {{debt.first_target }}. </p>
+      <p>To reach first target: $ {{ debt.reach_first_target }} </p>
+      <p>The minimum to pay each month is: $ {{ debt.min_amt_due }}</p>
+      <p> This is a {{ debt.debt_type }}.
+    </div>
+  </div>
+</template>
+
 <template id="expense-page">
   <div class="vue-component">
     <h2>Monthly Expenses:</h2>
