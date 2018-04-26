@@ -13,7 +13,7 @@ class DebtsController < ApplicationController
       due_date: params[:due_date],
       debt_type: params[:debt_type], 
       card_limit: params[:card_limit], 
-      user_id: User.first.id
+      user_id: current_user.id
     )
     if debt.save
       render json: debt.as_json

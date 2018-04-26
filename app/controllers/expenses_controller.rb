@@ -9,7 +9,7 @@ class ExpensesController < ApplicationController
       name: params[:name],
       monthly_payment: params[:monthly_payment],
       expense_type: params[:expense_type],
-      user_id: User.first.id
+      user_id: current_user.id
     )
     if expense.save
       render json: expense.as_json

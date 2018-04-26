@@ -22,10 +22,6 @@ class Income < ApplicationRecord
     }
   end
 
-  def current_user
-    User.first
-  end
-
   def monthly_income
     if recurring == true
       (paydays_per_year * amount_per_payday) / 12
@@ -127,4 +123,6 @@ class Income < ApplicationRecord
   def additional_amount
     remaining_wants_dollars + remaining_needs_dollars + save_amount
   end
+
+  
 end

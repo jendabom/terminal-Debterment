@@ -15,10 +15,6 @@ class Debt < ApplicationRecord
     }
   end
 
-  def current_user
-    User.first
-  end
-
   def target
     card_limit * 0.29
   end
