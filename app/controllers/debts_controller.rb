@@ -1,6 +1,6 @@
 class DebtsController < ApplicationController
   def index
-    debts = Debt.all
+    debts = Debt.where(user_id: current_user.id)
     render json: debts.as_json
   end
 
@@ -44,7 +44,11 @@ class DebtsController < ApplicationController
   end
 
   def sorted_debts
-    credit_card_debts = Debt.order(apr: :desc).where(user_id: current_user.id, debt_type: "Credit Card")
+    if current_user.preferred_payoff_method == "snowball"
+      credit_card_debts = Debt.order(:total_balance).where(user_id: current_user.id, debt_type: "Credit Card")
+    elsif current_user.preferred_payoff_method == "avalanche"
+      credit_card_debts = Debt.order(apr: :desc).where(user_id: current_user.id, debt_type: "Credit Card")
+    end
     non_credit_card_debts = Debt.where(user_id: current_user.id) && Debt.where.not(debt_type: "Credit Card")
     all_debts = credit_card_debts + non_credit_card_debts
     render json: all_debts.as_json

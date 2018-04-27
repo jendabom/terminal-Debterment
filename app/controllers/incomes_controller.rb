@@ -1,14 +1,14 @@
 class IncomesController < ApplicationController
   def index
-    incomes = Income.all
+    incomes = Income.where(user_id: current_user.id)
     render json: incomes.as_json
   end
 
   def show_all
     all_data = {
-      incomes: Income.all,
-      expenses: Expense.all,
-      debts: Debt.all
+      incomes: Income.where(user_id: current_user.id),
+      expenses: Expense.where(user_id: current_user.id),
+      debts: Debt.where(user_id: current_user.id)
     }
     render json: all_data.as_json
   end

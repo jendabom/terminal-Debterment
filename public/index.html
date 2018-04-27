@@ -57,13 +57,11 @@
 <template id="all-debt-page">
   <div class="vue-component">
     <h2>{{ message }}</h2>
+    <h3>Payoff Plan</h3>
+    <h4>First priority: {{first_debt.name}}</h4>
     <div v-for="debt in debts">
-      <h2>{{ debt.name }}</h2>
-      <p>Current Balance: $ {{ debt.total_balance }}.</p>
-      <p>First target: $ {{debt.first_target }}. </p>
-      <p>To reach first target: $ {{ debt.reach_first_target }} </p>
-      <p>The minimum to pay each month is: $ {{ debt.min_amt_due }}</p>
-      <p> This is a {{ debt.debt_type }}.
+      <p v-if="debt.name === first_debt.name">{{ debt.name }} ==> ${{ parseFloat(debt.min_amt_due) + 100}} (Min: ${{ debt.min_amt_due }})</p>
+      <p v-else>{{ debt.name }} ==> ${{ debt.min_amt_due }}</p>
     </div>
   </div>
 </template>

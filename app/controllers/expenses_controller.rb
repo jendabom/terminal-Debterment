@@ -1,6 +1,6 @@
 class ExpensesController < ApplicationController
   def index
-    expenses = Expense.all
+    expenses = Expense.where(user_id: current_user.id)
     render json: expenses.as_json
   end
 
