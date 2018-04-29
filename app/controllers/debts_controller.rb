@@ -34,12 +34,18 @@ class DebtsController < ApplicationController
   end
 
   def snowball
-    debts = Debt.order(:total_balance).where(user_id: current_user.id, debt_type: "Credit Card")
+    debts = Debt.order(:total_balance).where(
+      user_id: current_user.id, 
+      debt_type: "Credit Card"
+    )
     render json: debts.as_json
   end
 
   def avalanche
-    debts = Debt.order(apr: :desc).where(user_id: current_user.id, debt_type: "Credit Card")
+    debts = Debt.order(apr: :desc).where(
+      user_id: current_user.id, 
+      debt_type: "Credit Card"
+    )
     render json: debts.as_json
   end
 
@@ -48,11 +54,13 @@ class DebtsController < ApplicationController
 
     if current_user.preferred_payoff_method == "snowball"
       credit_card_debts = payoff_debts.order(:total_balance).where(
-        user_id: current_user.id, debt_type: "Credit Card"
+        user_id: current_user.id, 
+        debt_type: "Credit Card"
       )
     elsif current_user.preferred_payoff_method == "avalanche"
       credit_card_debts = payoff_debts.order(apr: :desc).where(
-        user_id: current_user.id, debt_type: "Credit Card"
+        user_id: current_user.id, 
+        debt_type: "Credit Card"
       )
     end
 
