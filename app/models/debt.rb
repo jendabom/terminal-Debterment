@@ -9,7 +9,7 @@ class Debt < ApplicationRecord
       apr: display_apr,
       min_amt_due: min_amt_due,
       #min_payment_payoff_months: months_til_min_only_payoff.to_i,
-      due_date: due_date,
+      due_date: day_due,
       debt_type: debt_type,
       limit: card_limit
     }
@@ -47,10 +47,7 @@ class Debt < ApplicationRecord
     (apr * 100).to_s + "%"
   end
 
-  def snowball_debt_order
-    debts = Debt.order(:total_balance).where(debt_type: "Credit Card")
-    debts.each do |debt|
-      Income.save_amount = Income.save_amount - debt.min_amt_due
-    end
+  def day_due
+    due_date.strftime("%d")
   end
 end

@@ -177,6 +177,34 @@ var AllDebtPage = {
   computed: {}
 };
 
+var MonthlyPlanningPage = {
+  template: "#monthly-planning-page",
+  data: function() {
+    return {
+      message: "Welcome to Debterment!", 
+      debts: [],
+      showall:[], 
+      first_debt: "", 
+      second_debt: ""
+    };
+  },
+  created: function() {
+    axios.get("/alldebts").then(function(response) {
+      this.debts = response.data;
+      this.first_debt = this.debts[0]
+      this.second_debt = this.debts[1]
+      console.log(this.debts)
+    }.bind(this));
+    axios.get("/showall").then(function(response) {
+      console.log(response.data);
+      this.showall = response.data;
+    }.bind(this));
+  },
+  methods: {
+  },
+  computed: {}
+};
+
 var SnowballDebtPage = {
   template: "#snowball-page",
   data: function() {
@@ -319,7 +347,8 @@ var router = new VueRouter({
     { path: "/signup", component: SignupPage },
     { path: "/login", component: LoginPage }, 
     { path: "/logout", component: LogoutPage }, 
-    { path: "/all_debts", component: AllDebtPage }
+    { path: "/all_debts", component: AllDebtPage },
+    { path: "/payoff_plan", component: MonthlyPlanningPage }
     
   ],
   scrollBehavior: function(to, from, savedPosition) {
