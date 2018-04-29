@@ -154,15 +154,22 @@ var AllDebtPage = {
   data: function() {
     return {
       message: "Welcome to Debterment!", 
-      debts: [], 
-      first_debt: ""
+      debts: [],
+      showall:[], 
+      first_debt: "", 
+      second_debt: ""
     };
   },
   created: function() {
     axios.get("/alldebts").then(function(response) {
       this.debts = response.data;
       this.first_debt = this.debts[0]
+      this.second_debt = this.debts[1]
       console.log(this.debts)
+    }.bind(this));
+    axios.get("/showall").then(function(response) {
+      console.log(response.data);
+      this.showall = response.data;
     }.bind(this));
   },
   methods: {

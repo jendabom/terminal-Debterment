@@ -60,7 +60,8 @@
     <h3>Payoff Plan</h3>
     <h4>First priority: {{first_debt.name}}</h4>
     <div v-for="debt in debts">
-      <p v-if="debt.name === first_debt.name">{{ debt.name }} ==> ${{ parseFloat(debt.min_amt_due) + 100}} (Min: ${{ debt.min_amt_due }})</p>
+      <p v-if="debt.name === first_debt.name">
+        {{ debt.name }} ==> ${{ parseFloat(debt.min_amt_due) + parseFloat(showall['incomes'][0].additional_amount)}} new bal: {{debt.total_balance - (parseFloat(debt.min_amt_due) + parseFloat(showall['incomes'][0].additional_amount))}}</p>
       <p v-else>{{ debt.name }} ==> ${{ debt.min_amt_due }}</p>
     </div>
   </div>

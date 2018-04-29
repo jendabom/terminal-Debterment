@@ -4,9 +4,11 @@ Rails.application.routes.draw do
   post '/debts' => 'debts#create'
   get '/debts/:id' => 'debts#show'
   delete 'debts/:id' => 'debts#destroy'
+  
   get '/snowball' => 'debts#snowball'
   get '/avalanche' => 'debts#avalanche'
   get '/alldebts' => 'debts#sorted_debts'
+
   get '/expenses' => 'expenses#index'
   post '/expenses' => 'expenses#create'
   get '/expenses/:id' => 'expenses#show'
