@@ -8,7 +8,7 @@ var ExpensePage = {
     };
   },
   created: function() {
-    axios.get("http://localhost:3000/expenses").then(function(response) {
+    axios.get("/expenses").then(function(response) {
       this.expenses = response.data;
     }.bind(this));
   },
@@ -26,7 +26,7 @@ var AddIncomePage = {
     };
   },
   created: function() {
-    axios.get("http://localhost:3000/incomes").then(function(response) {
+    axios.get("/incomes").then(function(response) {
       this.incomes = response.data;
     }.bind(this));
   },
@@ -58,7 +58,7 @@ var AddExpensePage = {
     };
   },
   created: function() {
-    axios.get("http://localhost:3000/expenses").then(function(response) {
+    axios.get("/expenses").then(function(response) {
       this.expenses = response.data;
     }.bind(this));
   },
@@ -88,7 +88,7 @@ var IncomePage = {
     };
   },
   created: function() {
-    axios.get("http://localhost:3000/incomes").then(function(response) {
+    axios.get("/incomes").then(function(response) {
       this.incomes = response.data;
     }.bind(this));
   },
@@ -106,7 +106,7 @@ var AddDebtPage = {
     };
   },
   created: function() {
-    axios.get("http://localhost:3000/debts").then(function(response) {
+    axios.get("/debts").then(function(response) {
       this.debts = response.data;
     }.bind(this));
   },
@@ -214,7 +214,7 @@ var SnowballDebtPage = {
     };
   },
   created: function() {
-    axios.get("http://localhost:3000/snowball").then(function(response) {
+    axios.get("/snowball").then(function(response) {
       this.debts = response.data;
     }.bind(this));
   },
@@ -231,7 +231,7 @@ var AvalancheDebtPage = {
     };
   },
   created: function() {
-    axios.get("http://localhost:3000/avalanche").then(function(response) {
+    axios.get("/avalanche").then(function(response) {
       this.debts = response.data;
     }.bind(this));
   },
