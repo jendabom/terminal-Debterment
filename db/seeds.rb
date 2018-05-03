@@ -1,3 +1,7 @@
+User.create!([
+  {first_name: "Jamie", last_name: "MacKillop", email: "jamie@jamie.com", password_digest: "$2a$10$5EAqRxulyjZazwp3BKhpduTV33O5qFNd1hyDpZq6tcxKnrOj3Kxj6", preferred_payoff_method: "avalanche"},
+  {first_name: "Jennifer", last_name: "Blom", email: "jen.blom@gmail.com", password_digest: "$2a$10$W.IgRVqzJ.rtQgrwjEEPc.izS6ZvNjFrYcMykLybT.jr6lgDupH3y", preferred_payoff_method: "avalanche"}
+])
 Debt.create!([
   {name: "Upstart Loan", total_balance: "10000.0", apr: "0.18", min_amt_due: "405.0", due_date: "2018-04-25", debt_type: "Loan", card_limit: nil, user_id: 1},
   {name: "Amex", total_balance: "650.0", apr: "0.17", min_amt_due: "25.0", due_date: "2018-05-13", debt_type: "Credit Card", card_limit: "1000.0", user_id: 1},
@@ -31,7 +35,4 @@ Income.create!([
   {name: "Etsy", paydays_per_year: 12, amount_per_payday: "50.0", user_id: 1, recurring: true},
   {name: "Ebay", paydays_per_year: 12, amount_per_payday: "50.0", user_id: 1, recurring: true}
 ])
-User.create!([
-  {first_name: "Jamie", last_name: "MacKillop", email: "jamie@jamie.com", password_digest: "$2a$10$5EAqRxulyjZazwp3BKhpduTV33O5qFNd1hyDpZq6tcxKnrOj3Kxj6", preferred_payoff_method: "avalanche"},
-  {first_name: "Jennifer", last_name: "Blom", email: "jen.blom@gmail.com", password_digest: "$2a$10$W.IgRVqzJ.rtQgrwjEEPc.izS6ZvNjFrYcMykLybT.jr6lgDupH3y", preferred_payoff_method: "avalanche"}
-])
+
