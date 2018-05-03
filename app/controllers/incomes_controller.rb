@@ -18,7 +18,8 @@ class IncomesController < ApplicationController
       name: params[:name],
       paydays_per_year: params[:paydays_per_year],
       amount_per_payday: params[:amount_per_payday],
-      user_id: current_user.id
+      user_id: current_user.id, 
+      recurring: params[:recurring]
     )
     if income.save
       render json: income.as_json

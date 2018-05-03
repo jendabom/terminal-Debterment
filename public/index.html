@@ -1,13 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>My App</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    <meta charset="utf-8">
+  <title>Remember - Multipurpose bootstrap site template</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Your page description here" />
+  <meta name="author" content="" />
+
+  <!-- css -->
+  <link href="css/bootstrap.css" rel="stylesheet" />
+  <link href="css/bootstrap-responsive.css" rel="stylesheet" />
+  <link href="css/prettyPhoto.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+
+  <!-- Theme skin -->
+  <link id="t-colors" href="color/default.css" rel="stylesheet" />
+
+  <!-- Fav and touch icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png" />
+  <link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png" />
+  <link rel="shortcut icon" href="ico/favicon.png" />
   <script src="https://unpkg.com/vue/dist/vue.js"></script>
   <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
   <script src="https://unpkg.com/axios/dist/axios.js"></script>
@@ -15,7 +30,6 @@
 </head>
 <body>
   <div id="vue-app">
-    <p><a href="/#/signup">Signup</a>
     <a href="/#/login">Login</a>
     <a href="/#/logout">Logout</a></p>
     <a href="/#/add_debt">Add Debt</a>
@@ -23,14 +37,159 @@
     <a href="/#/add_income">Add Income</a>
     <a href="/#/all_debts">All Debts</a>
 
+    <header>
+      <div class="top">
+        <div class="container">
+          <div class="row">
+            <div class="span6">
+              <ul class="topmenu">
+                <li><a href="#">Home</a> &#47;</li>
+                <li><a href="#">Terms</a> &#47;</li>
+                <li><a href="#">Privacy policy</a></li>
+              </ul>
+            </div>
+            <div class="span6">
+
+              <ul class="social-network">
+                <li><a href="#" data-placement="bottom" title="Facebook"><i class="icon-circled icon-bglight icon-facebook"></i></a></li>
+                <li><a href="#" data-placement="bottom" title="Twitter"><i class="icon-circled icon-bglight icon-twitter"></i></a></li>
+                <li><a href="#" data-placement="bottom" title="Linkedin"><i class="icon-circled icon-linkedin icon-bglight"></i></a></li>
+                <li><a href="#" data-placement="bottom" title="Pinterest"><i class="icon-circled icon-pinterest  icon-bglight"></i></a></li>
+                <li><a href="#" data-placement="bottom" title="Google +"><i class="icon-circled icon-google-plus icon-bglight"></i></a></li>
+              </ul>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+
+
+        <div class="row nomargin">
+          <div class="span4">
+            <div class="logo">
+              <h1><a href="/"><i class="font-icon-road"></i> Debterment</a></h1>
+            </div>
+          </div>
+          <div class="span8">
+            <div class="navbar navbar-static-top">
+              <div class="navigation">
+                <nav>
+                  <ul class="nav topnav">
+                    <li class="dropdown">
+                      <a href="#">Features <i class="icon-angle-down"></i></a>
+                      <ul class="dropdown-menu">
+                        <li><a href="typography.html">Typography</a></li>
+                        <li><a href="components.html">Components</a></li>
+                        <li><a href="icons.html">Icons</a></li>
+                        <li><a href="icon-variations.html">Icon variations</a></li>
+
+                      </ul>
+                    </li>
+                    <li class="dropdown">
+                      <a href="#">Pages <i class="icon-angle-down"></i></a>
+                      <ul class="dropdown-menu">
+                        <li><a href="about.html">About us</a></li>
+                        <li><a href="pricingbox.html">Pricing boxes</a></li>
+                        <li><a href="404.html">404</a></li>
+                      </ul>
+                    </li>
+                    <li class="dropdown">
+                      <a href="#">Portfolio <i class="icon-angle-down"></i></a>
+                      <ul class="dropdown-menu">
+                        <li><a href="portfolio-2cols.html">Portfolio 2 columns</a></li>
+                        <li><a href="portfolio-3cols.html">Portfolio 3 columns</a></li>
+                        <li><a href="portfolio-4cols.html">Portfolio 4 columns</a></li>
+                        <li><a href="portfolio-detail.html">Portfolio detail</a></li>
+                      </ul>
+                    </li>
+                    <li class="dropdown">
+                      <a href="#">Blog <i class="icon-angle-down"></i></a>
+                      <ul class="dropdown-menu">
+                        <li><a href="blog-left-sidebar.html">Blog left sidebar</a></li>
+                        <li><a href="blog-right-sidebar.html">Blog right sidebar</a></li>
+                        <li><a href="post-left-sidebar.html">Post left sidebar</a></li>
+                        <li><a href="post-right-sidebar.html">Post right sidebar</a></li>
+                      </ul>
+                    </li>
+                    <li>
+                      <a href="contact.html">Contact </a>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+              <!-- end navigation -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
     <router-view></router-view>
 
+    <footer>
+      <div id="sub-footer">
+        <div class="container">
+          <div class="row">
+            <div class="span6">
+              <div class="copyright">
+                <p><span>&copy; Remember Inc. All right reserved</span></p>
+              </div>
+
+            </div>
+
+            <div class="span6">
+              <div class="credits">
+                <!--
+                  All the links in the footer should remain intact.
+                  You can delete the links only if you purchased the pro version.
+                  Licensing information: https://bootstrapmade.com/license/
+                  Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Remember
+                -->
+                Created by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+   <a href="#" class="scrollup"><i class="icon-angle-up icon-rounded icon-bglight icon-2x"></i></a>
+
   </div>
+  <script src="js/jquery.js"></script>
+  <script src="js/jquery.easing.1.3.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <script src="js/modernizr.custom.js"></script>
+  <script src="js/toucheffects.js"></script>
+  <script src="js/google-code-prettify/prettify.js"></script>
+  <script src="js/jquery.prettyPhoto.js"></script>
+  <script src="js/portfolio/jquery.quicksand.js"></script>
+  <script src="js/portfolio/setting.js"></script>
+  <script src="js/animate.js"></script>
+
+  <!-- Template Custom JavaScript File -->
+  <script src="js/custom.js"></script>
 </body>
 </html>
 
 <template id="home-page">
   <div class="vue-component">
+        <!-- section intro -->
+    <section id="intro">
+      <div class="intro-content">
+        <h2>{{greeting}}</h2>
+        <h3>{{message}}</h3>
+        <div>
+          <a href="/#/signup" class="btn-get-started">Get Started</a>
+        </div>
+      </div>
+    </section>
+    <!-- /section intro -->
+  </div>
+</template>
+
+<template id="overview">    
     <h2>{{ message }}</h2>
     <div><ul>
     <li>Min Payments each Month: {{ showall['incomes'][0].min_all_paying_off }}</li>
@@ -124,36 +283,147 @@
 
 <template id="add-debt-page">
   <div class="vue-component">
-    <h1>{{ message }}</h1>
-    <p>Name:<input v-model="newDebt.name"></p>
-    <p>Total Balance:<input v-model="newDebt.total_balance"></p>
-    <p>APR:<input v-model="newDebt.apr"></p>
-    <p>Minimum Amount Due:<input v-model="newDebt.min_amt_due"></p>
-    <p>Due Date:<input v-model="newDebt.due_date"></p>
-    <p>Debt Type:<input v-model="newDebt.debt_type"></p>
-    <p>Card Limit (if Credit Card):<input v-model="newDebt.card_limit"></p>
-    <button v-on:click="addDebt()">Add Debt</button>
+    <section id="inner-headline">
+      <div class="container">
+        <div class="row">
+          <div class="span4">
+            <div class="inner-heading">
+              <h2>{{ message }}</h2>
+            </div>
+          </div>
+          <div class="span8">
+            <ul class="breadcrumb">
+              <li><a href="/">Home</a> <i class="icon-angle-right"></i></li>
+              <li class="active">{{ message }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="container">
+      <form>
+        <div class="form-row">
+          <div class="col">
+            <label for="newDebt.name">Name</label>
+            <input type="text" v-model="newDebt.name" class="form-control">
+          </div>
+          <div class="col">
+            <label for="newDebt.total_balance">Total Balance</label>
+            <input type="text" v-model="newDebt.total_balance" class="form-control">
+          </div>
+          <div class="col">
+            <label for="newDebt.apr">APR</label>
+            <input type="text" v-model="newDebt.apr" class="form-control">
+          </div>
+          <div class="col">
+            <label for="newDebt.min_amt_due">Minimum Amount Due</label>
+            <input type="text" v-model="newDebt.min_amt_due" class="form-control">
+          </div>
+          <div class="col">
+            <label for="newDebt.due_date">Due Date</label>
+            <input type="text" v-model="newDebt.due_date" class="form-control">
+          </div>
+          <div class="col">
+            <label for="newDebt.debt_type">Debt Type</label>
+            <input type="text" v-model="newDebt.debt_type" class="form-control">
+          </div>
+          <div class="col">
+            <label for="newDebt.card_limit">Card Limit (if Credit Card)</label>
+            <input type="text" v-model="newDebt.card_limit" class="form-control">
+          </div>
+        </div>
+          <button class="btn btn-primary" v-on:click="addDebt()">Add Debt</button>
+        </div>
+      </form>
+    </div>
   </div>
 </template>
 
 <template id="add-expense-page">
   <div class="vue-component">
-    <h1>{{ message }}</h1>
-    <p>Name:<input v-model="newExpense.name"></p>
-    <p>Monthly Payment:<input v-model="newExpense.monthly_payment"></p>
-    <p>Expense Type:<input v-model="newExpense.expense_type"></p>
-    <button v-on:click="addExpense()">Add Expense</button>
+    <section id="inner-headline">
+      <div class="container">
+        <div class="row">
+          <div class="span4">
+            <div class="inner-heading">
+              <h2>{{ message }}</h2>
+            </div>
+          </div>
+          <div class="span8">
+            <ul class="breadcrumb">
+              <li><a href="/">Home</a> <i class="icon-angle-right"></i></li>
+              <li class="active">{{ message }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+      <form>
+        <div class="form-row">
+          <div class="col">
+            <label for="newExpense.name">Name</label>
+            <input v-model="newExpense.name">
+          </div>
+          <div class="col">
+            <label for="newExpense.monthly_payment">Monthly Payment</label>
+            <input v-model="newExpense.monthly_payment">
+          </div>
+          <div class="col">
+            <label for="newExpense.expense_type">Expense Type</label>
+            <input v-model="newExpense.expense_type">
+          </div>
+        </div>
+          <button class="btn btn-primary" v-on:click="addExpense()">Add Expense</button>
+      </form>
+    </div>
   </div>
 </template>
 
 <template id="add-income-page">
   <div class="vue-component">
-    <h1>{{ message }}</h1>
-    <p>Name:<input v-model="newIncome.name"></p>
-    <p>Amount per payday:<input v-model="newIncome.amount_per_payday"></p>
-    <p>Paydays per Year:<input v-model="newIncome.paydays_per_year"></p>
-    <p>Recurring: <input type="checkbox" id="recurring" v-model="newIncome.recurring"></p>
-    <button v-on:click="addIncome()">Add Income</button>
+    <section id="inner-headline">
+      <div class="container">
+        <div class="row">
+          <div class="span4">
+            <div class="inner-heading">
+              <h2>{{ message }}</h2>
+            </div>
+          </div>
+          <div class="span8">
+            <ul class="breadcrumb">
+              <li><a href="/">Home</a> <i class="icon-angle-right"></i></li>
+              <li class="active">{{ message }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+      <form>
+        <div class="form-row">
+          <div class="col">
+            <label for="newIncome.name">Name</label>
+            <input v-model="newIncome.name">
+          </div>
+          <div class="col">
+            <label for="newIncome.amount_per_payday">Amount per payday</label>
+            <input v-model="newIncome.amount_per_payday">
+          </div>
+          <div class="col">
+            <label for="newIncome.paydays_per_year">Paydays per Year</label>
+            <input v-model="newIncome.paydays_per_year">
+          </div>
+          <div class="col">
+            <label for="newIncome.recurring">Recurring</label>
+            <input type="checkbox" v-model="newIncome.recurring">
+          </div>
+        </div>
+          <button class="btn btn-primary" v-on:click="addIncome()">Add Income</button>
+      </form>
+    </div>
   </div>
 </template>
 

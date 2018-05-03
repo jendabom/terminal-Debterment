@@ -100,7 +100,7 @@ var AddDebtPage = {
   template: "#add-debt-page",
   data: function() {
     return {
-      message: "Welcome to Debterment!", 
+      message: "Add a Debt", 
       debts: [],
       newDebt: {name: "", total_balance: 0, apr: 0, min_amount_due: 0, due_date: "", debt_type: "", card_limit: 0}
     };
@@ -243,7 +243,8 @@ var HomePage = {
   template: "#home-page",
   data: function() {
     return {
-      message: "Welcome to Debterment!",
+      greeting: "Welcome to Debterment!",
+      message: "Get your life back and tell your debt to go bye bye!",
       showall: [] 
     };
   },
