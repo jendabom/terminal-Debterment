@@ -30,26 +30,21 @@
 </head>
 <body>
   <div id="vue-app">
-    <p><a href="/#/login">Login</a>
-    <a href="/#/logout">Logout</a></p>
-
     <header>
       <div class="top">
         <div class="container">
           <div class="row">
             <div class="span6">
               <ul class="topmenu">
-                <li><a href="#">Home</a> &#47;</li>
-                <li><a href="#">Terms</a> &#47;</li>
-                <li><a href="#">Privacy policy</a></li>
+                <li><a href="/#/">Home</a> &#47;</li>
+                <li><a href="/#/login">Login</a> &#47;</li>
+                <li><a href="/#/logout">Logout</a></li>
               </ul>
             </div>
           </div>
         </div>
       </div>
       <div class="container">
-
-
         <div class="row nomargin">
           <div class="span4">
             <div class="logo">
@@ -76,6 +71,7 @@
                       <ul class="dropdown-menu">
                         <li><a href="/#/all_debts">All Debts</a></li>
                         <li><a href="/#/payoff_plan">Payoff Plan</a></li>
+                        <li><a href="/#/settings">User Settings</a></li>
                         <li><a href="404.html">404</a></li>
                       </ul>
                     </li>
@@ -176,16 +172,15 @@
 
 <template id="overview">    
     <h2>{{ message }}</h2>
-    <div><ul>
-    <li>Min Payments each Month: {{ showall['incomes'][0].min_all_paying_off }}</li>
-    <li>Additional Payoff Amount: {{ showall['incomes'][0].additional_amount }}</li>
-    <li>Total Debt: {{ showall['incomes'][0].complete_payoff_total }}</li>
-    <li>Total Credit Card Debt: {{ showall['incomes'][0].credit_card_debt_total }}</li>
-    <li>Non Credit Card Debt Total: {{ showall['incomes'][0].other_debt_total }}</li>
-    </ul>
+    <div>
+      <ul>
+      <li>Min Payments each Month: {{ showall['incomes'][0].min_all_paying_off }}</li>
+      <li>Additional Payoff Amount: {{ showall['incomes'][0].additional_amount }}</li>
+      <li>Total Debt: {{ showall['incomes'][0].complete_payoff_total }}</li>
+      <li>Total Credit Card Debt: {{ showall['incomes'][0].credit_card_debt_total }}</li>
+      <li>Non Credit Card Debt Total: {{ showall['incomes'][0].other_debt_total }}</li>
+      </ul>
     </div>
-    <hr>
-  </div>
 </template>
 
 <template id="debt-page">
@@ -204,9 +199,8 @@
 
 <template id="all-debt-page">
   <div class="vue-component">
-    <h2>{{ message }}</h2>
-    <h3>Payoff Plan</h3>
-    <h4>First priority: {{first_debt.name}}</h4>
+    <h3>{{ message }}</h3>
+    <h5>First priority: {{first_debt.name}}</h5>
     <div v-for="debt in debts">
       <p v-if="debt.name === first_debt.name">
         {{ debt.name }} ==> ${{ parseFloat(debt.min_amt_due) + parseFloat(showall['incomes'][0].additional_amount)}} new bal: {{debt.total_balance - (parseFloat(debt.min_amt_due) + parseFloat(showall['incomes'][0].additional_amount))}}</p>

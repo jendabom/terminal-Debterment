@@ -153,7 +153,7 @@ var AllDebtPage = {
   template: "#all-debt-page",
   data: function() {
     return {
-      message: "Welcome to Debterment!", 
+      message: "Outstanding Debts:", 
       debts: [],
       showall:[], 
       first_debt: "", 
@@ -183,7 +183,7 @@ var MonthlyPlanningPage = {
     return {
       message: "Payoff Plan!", 
       debts: [],
-      showall: []
+      showall:  []
     };
   },
   created: function() {
@@ -319,7 +319,7 @@ var LoginPage = {
           axios.defaults.headers.common["Authorization"] =
             "Bearer " + response.data.jwt;
           localStorage.setItem("jwt", response.data.jwt);
-          router.push("/");
+          router.push("/all_debts");
         })
         .catch(
           function(error) {
