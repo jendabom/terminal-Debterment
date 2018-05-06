@@ -72,4 +72,11 @@ class DebtsController < ApplicationController
     all_debts = credit_card_debts + non_credit_card_debts
     render json: all_debts.as_json
   end
+
+  def monthly_due_date_order
+    debts = Debt.order(:due_date).where(
+      user_id: current_user.id
+    )
+    render json: debts.as_json
+  end
 end

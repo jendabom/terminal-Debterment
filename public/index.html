@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
+  <meta charset="utf-8">
   <title>Remember - Multipurpose bootstrap site template</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Your page description here" />
@@ -30,12 +30,8 @@
 </head>
 <body>
   <div id="vue-app">
-    <a href="/#/login">Login</a>
+    <p><a href="/#/login">Login</a>
     <a href="/#/logout">Logout</a></p>
-    <a href="/#/add_debt">Add Debt</a>
-    <a href="/#/add_expense">Add Expense</a>
-    <a href="/#/add_income">Add Income</a>
-    <a href="/#/all_debts">All Debts</a>
 
     <header>
       <div class="top">
@@ -47,17 +43,6 @@
                 <li><a href="#">Terms</a> &#47;</li>
                 <li><a href="#">Privacy policy</a></li>
               </ul>
-            </div>
-            <div class="span6">
-
-              <ul class="social-network">
-                <li><a href="#" data-placement="bottom" title="Facebook"><i class="icon-circled icon-bglight icon-facebook"></i></a></li>
-                <li><a href="#" data-placement="bottom" title="Twitter"><i class="icon-circled icon-bglight icon-twitter"></i></a></li>
-                <li><a href="#" data-placement="bottom" title="Linkedin"><i class="icon-circled icon-linkedin icon-bglight"></i></a></li>
-                <li><a href="#" data-placement="bottom" title="Pinterest"><i class="icon-circled icon-pinterest  icon-bglight"></i></a></li>
-                <li><a href="#" data-placement="bottom" title="Google +"><i class="icon-circled icon-google-plus icon-bglight"></i></a></li>
-              </ul>
-
             </div>
           </div>
         </div>
@@ -89,8 +74,8 @@
                     <li class="dropdown">
                       <a href="#">Pages <i class="icon-angle-down"></i></a>
                       <ul class="dropdown-menu">
-                        <li><a href="about.html">About us</a></li>
-                        <li><a href="pricingbox.html">Pricing boxes</a></li>
+                        <li><a href="/#/all_debts">All Debts</a></li>
+                        <li><a href="/#/payoff_plan">Payoff Plan</a></li>
                         <li><a href="404.html">404</a></li>
                       </ul>
                     </li>
@@ -485,13 +470,18 @@
 
 <template id="monthly-planning-page">
   <div class="vue-component">
-    <h2>{{ message }}</h2>
-    <h3>Payoff Plan</h3>
-    <h4>First priority: {{first_debt.name}}</h4>
+    <h3>{{ message }}</h3>
     <div v-for="debt in debts">
-      <p v-if="debt.name === first_debt.name">
-        {{ debt.name }} ==> ${{ parseFloat(debt.min_amt_due) + parseFloat(showall['incomes'][0].additional_amount)}} new bal: {{debt.total_balance - (parseFloat(debt.min_amt_due) + parseFloat(showall['incomes'][0].additional_amount))}}</p>
-      <p v-else>{{ debt.name }} ==> ${{ debt.min_amt_due }} <p>Date due: {{debt.due_date}}</p></p>
+      {{debt.due_date}} {{ debt.name }} ==> ${{ debt.min_amt_due }}
     </div>
+  </div>
+</template>
+
+<template id="user-settings-page">
+  <div class="vue-component">
+    <h2>{{ message }}</h2>
+    <a href="/#/add_debt">Add Debt</a>
+    <a href="/#/add_expense">Add Expense</a>
+    <a href="/#/add_income">Add Income</a>
   </div>
 </template>

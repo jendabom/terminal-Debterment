@@ -181,27 +181,22 @@ var MonthlyPlanningPage = {
   template: "#monthly-planning-page",
   data: function() {
     return {
-      message: "Welcome to Debterment!", 
+      message: "Payoff Plan!", 
       debts: [],
-      showall:[], 
-      first_debt: "", 
-      second_debt: ""
+      showall: []
     };
   },
   created: function() {
-    axios.get("/alldebts").then(function(response) {
+    axios.get("/monthly_payoff").then(function(response) {
       this.debts = response.data;
-      this.first_debt = this.debts[0]
-      this.second_debt = this.debts[1]
-      console.log(this.debts)
+      console.log(this.debts);
     }.bind(this));
     axios.get("/showall").then(function(response) {
       console.log(response.data);
       this.showall = response.data;
     }.bind(this));
   },
-  methods: {
-  },
+  methods: {},
   computed: {}
 };
 
@@ -254,6 +249,18 @@ var HomePage = {
       this.showall = response.data;
     }.bind(this));
   },
+  methods: {},
+  computed: {}
+};
+
+var UserSettingsPage = {
+  template: "#user-settings-page",
+  data: function() {
+    return {
+      message: "User Settings"
+    };
+  },
+  created: function() {},
   methods: {},
   computed: {}
 };
@@ -349,8 +356,8 @@ var router = new VueRouter({
     { path: "/login", component: LoginPage }, 
     { path: "/logout", component: LogoutPage }, 
     { path: "/all_debts", component: AllDebtPage },
-    { path: "/payoff_plan", component: MonthlyPlanningPage }
-    
+    { path: "/payoff_plan", component: MonthlyPlanningPage },
+    { path: "/settings", component: UserSettingsPage }    
   ],
   scrollBehavior: function(to, from, savedPosition) {
     return { x: 0, y: 0 };

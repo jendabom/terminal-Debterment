@@ -124,5 +124,4 @@ class Income < ApplicationRecord
     remaining_wants_dollars + remaining_needs_dollars + save_amount
   end
 
-  
 end

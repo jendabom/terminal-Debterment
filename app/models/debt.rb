@@ -9,7 +9,7 @@ class Debt < ApplicationRecord
       apr: display_apr,
       min_amt_due: min_amt_due,
       #min_payment_payoff_months: months_til_min_only_payoff.to_i,
-      due_date: day_due,
+      due_date: due_date,
       debt_type: debt_type,
       limit: card_limit
     }
@@ -45,9 +45,5 @@ class Debt < ApplicationRecord
 
   def display_apr
     (apr * 100).to_s + "%"
-  end
-
-  def day_due
-    due_date.strftime("%d")
   end
 end

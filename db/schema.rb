@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180422210522) do
+ActiveRecord::Schema.define(version: 20180506160128) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,12 +20,12 @@ ActiveRecord::Schema.define(version: 20180422210522) do
     t.decimal "total_balance"
     t.decimal "apr"
     t.decimal "min_amt_due"
-    t.date "due_date"
     t.string "debt_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.decimal "card_limit", precision: 8, scale: 2
     t.integer "user_id"
+    t.integer "due_date"
   end
 
   create_table "expenses", force: :cascade do |t|
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 20180422210522) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "preferred_payoff_method"
+    t.date "startDate"
   end
 
 end
