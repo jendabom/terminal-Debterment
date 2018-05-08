@@ -466,7 +466,8 @@
   <div class="vue-component">
     <h3>{{ message }}</h3>
     <div v-for="debt in debts">
-      {{debt.due_date}} {{ debt.name }} ==> ${{ debt.min_amt_due }}
+      {{debt.due_date}} {{ debt.name }} ==> ${{ debt.min_amt_due }} 
+      * Priority: {{ debt.priority }} *
     </div>
   </div>
 </template>

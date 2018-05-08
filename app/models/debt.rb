@@ -11,7 +11,8 @@ class Debt < ApplicationRecord
       #min_payment_payoff_months: months_til_min_only_payoff.to_i,
       due_date: due_date,
       debt_type: debt_type,
-      limit: card_limit
+      limit: card_limit, 
+      priority: priority
     }
   end
 

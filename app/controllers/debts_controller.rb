@@ -88,7 +88,8 @@ class DebtsController < ApplicationController
   end
 
   def monthly_due_date_order
-    debts = Debt.order(:due_date).where(
+    payoff_debts = Debt.where.not(total_balance: 0)
+    debts = payoff_debts.order(:due_date).where(
       user_id: current_user.id
     )
     render json: debts.as_json
