@@ -33,6 +33,19 @@ class DebtsController < ApplicationController
     render json: {message: "I did the thing and deleted that debt."}
   end
 
+  def update
+    debt = Debt.find(params[:id])
+    debt.update(
+      name: params[:name],
+      total_balance: params[:total_balance],
+      apr: params[:apr],
+      min_amt_due: params[:min_amt_due], 
+      due_date: params[:due_date],
+      debt_type: params[:debt_type], 
+      card_limit: params[:card_limit],
+      priority: params[:priority] )
+  end
+
   def snowball
     debts = Debt.order(:total_balance).where(
       user_id: current_user.id, 
@@ -70,6 +83,7 @@ class DebtsController < ApplicationController
         debt_type: "Credit Card"
       )
     all_debts = credit_card_debts + non_credit_card_debts
+    set_priority(all_debts)
     render json: all_debts.as_json
   end
 
@@ -78,5 +92,13 @@ class DebtsController < ApplicationController
       user_id: current_user.id
     )
     render json: debts.as_json
+  end
+
+  def set_priority(debts)
+    i = 1
+    debts.each do |debt|
+      debt.update_attribute(:priority, i)
+      i += 1
+    end
   end
 end
