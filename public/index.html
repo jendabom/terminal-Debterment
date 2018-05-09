@@ -57,16 +57,6 @@
                 <nav>
                   <ul class="nav topnav">
                     <li class="dropdown">
-                      <a href="#">Features <i class="icon-angle-down"></i></a>
-                      <ul class="dropdown-menu">
-                        <li><a href="typography.html">Typography</a></li>
-                        <li><a href="components.html">Components</a></li>
-                        <li><a href="icons.html">Icons</a></li>
-                        <li><a href="icon-variations.html">Icon variations</a></li>
-
-                      </ul>
-                    </li>
-                    <li class="dropdown">
                       <a href="#">Pages <i class="icon-angle-down"></i></a>
                       <ul class="dropdown-menu">
                         <li><a href="/#/all_debts">All Debts</a></li>
@@ -170,7 +160,7 @@
   </div>
 </template>
 
-<template id="overview">   
+<template id="overview">
   <div class="container"> 
   <h2>{{ message }}</h2>
     <ul>
@@ -472,9 +462,9 @@
       <form>
       <div v-for="debt in debts">
           <div class="form-group">
-            <label class="col-sm-2 col-form-label">{{debt.name}}</label>
-            <input type="email" class="form-control" aria-describedby="emailHelp" v-bind:placeholder="debt.min_amt_due">
-            <small id="emailHelp" class="form-text text-muted">{{debt.priority}}</small>
+            <label class="col-sm-2 col-form-label">{{debt.name}} -- ({{debt.pretty_priority}} priority)</label>
+            <input type="email" class="form-control" aria-describedby="emailHelp" v-bind:value="debt.min_amt_due">
+            <small id="emailHelp" class="form-text text-muted">(Current Balance: {{debt.total_balance}})</small>
           </div>
       </div>
       <div class="form-text text-muted">Please verify that you have updated this page to the actual payments you made this month before you click submit.</div>
@@ -486,9 +476,11 @@
 
 <template id="user-settings-page">
   <div class="vue-component">
-    <h2>{{ message }}</h2>
-    <a href="/#/add_debt">Add Debt</a>
-    <a href="/#/add_expense">Add Expense</a>
-    <a href="/#/add_income">Add Income</a>
+    <div class="container">
+      <h2>{{ message }}</h2>
+      <p><a href="/#/add_debt">Add Debt</a></p>
+      <p><a href="/#/add_expense">Add Expense</a></p>
+      <p><a href="/#/add_income">Add Income</a></p>
+    </div>
   </div>
 </template>

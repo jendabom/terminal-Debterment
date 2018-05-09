@@ -12,7 +12,8 @@ class Debt < ApplicationRecord
       due_date: due_date,
       debt_type: debt_type,
       limit: card_limit, 
-      priority: priority
+      priority: priority,
+      pretty_priority: priority.ordinalize
     }
   end
 
