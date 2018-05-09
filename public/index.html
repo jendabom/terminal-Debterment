@@ -170,41 +170,45 @@
   </div>
 </template>
 
-<template id="overview">    
-    <h2>{{ message }}</h2>
-    <div>
-      <ul>
-      <li>Min Payments each Month: {{ showall['incomes'][0].min_all_paying_off }}</li>
-      <li>Additional Payoff Amount: {{ showall['incomes'][0].additional_amount }}</li>
-      <li>Total Debt: {{ showall['incomes'][0].complete_payoff_total }}</li>
-      <li>Total Credit Card Debt: {{ showall['incomes'][0].credit_card_debt_total }}</li>
-      <li>Non Credit Card Debt Total: {{ showall['incomes'][0].other_debt_total }}</li>
-      </ul>
-    </div>
+<template id="overview">   
+  <div class="container"> 
+  <h2>{{ message }}</h2>
+    <ul>
+    <li>Min Payments each Month: {{ showall['incomes'][0].min_all_paying_off }}</li>
+    <li>Additional Payoff Amount: {{ showall['incomes'][0].additional_amount }}</li>
+    <li>Total Debt: {{ showall['incomes'][0].complete_payoff_total }}</li>
+    <li>Total Credit Card Debt: {{ showall['incomes'][0].credit_card_debt_total }}</li>
+    <li>Non Credit Card Debt Total: {{ showall['incomes'][0].other_debt_total }}</li>
+    </ul>
+  </div>
 </template>
 
 <template id="debt-page">
   <div class="vue-component">
+    <div class="container">
     <h2>{{ message }}</h2>
-    <div v-for="debt in debts">
-      <h2>{{ debt.name }}</h2>
-      <p>Current Balance: $ {{ debt.total_balance }}.</p>
-      <p>First target: $ {{debt.first_target }}. </p>
-      <p>To reach first target: $ {{ debt.reach_first_target }} </p>
-      <p>The minimum to pay each month is: $ {{ debt.min_amt_due }}</p>
-      <p> This is a {{ debt.debt_type }}.
+      <div v-for="debt in debts">
+        <h2>{{ debt.name }}</h2>
+        <p>Current Balance: $ {{ debt.total_balance }}.</p>
+        <p>First target: $ {{debt.first_target }}. </p>
+        <p>To reach first target: $ {{ debt.reach_first_target }} </p>
+        <p>The minimum to pay each month is: $ {{ debt.min_amt_due }}</p>
+        <p> This is a {{ debt.debt_type }}.
+      </p>
     </div>
   </div>
 </template>
 
 <template id="all-debt-page">
   <div class="vue-component">
-    <h3>{{ message }}</h3>
-    <h5>First priority: {{first_debt.name}}</h5>
-    <div v-for="debt in debts">
-      <p v-if="debt.name === first_debt.name">
-        {{ debt.name }} ==> ${{ parseFloat(debt.min_amt_due) + parseFloat(showall['incomes'][0].additional_amount)}} new bal: {{debt.total_balance - (parseFloat(debt.min_amt_due) + parseFloat(showall['incomes'][0].additional_amount))}}</p>
-      <p v-else>{{ debt.name }} ==> ${{ debt.min_amt_due }} <p>Date due: {{debt.due_date}}</p></p>
+    <div class="container">
+      <h3>{{ message }}</h3>
+      <h5>First priority: {{first_debt.name}}</h5>
+      <div v-for="debt in debts">
+        <p v-if="debt.name === first_debt.name">
+          {{ debt.name }} ==> ${{ parseFloat(debt.min_amt_due) + parseFloat(showall['incomes'][0].additional_amount)}} new bal: {{debt.total_balance - (parseFloat(debt.min_amt_due) + parseFloat(showall['incomes'][0].additional_amount))}}</p>
+        <p v-else>{{ debt.name }} ==> ${{ debt.min_amt_due }} <p>Date due: {{debt.due_date}}</p></p>
+      </div>
     </div>
   </div>
 </template>
@@ -458,16 +462,24 @@
       </div>
       <button class="btn btn-primary" v-on:click="submit()">Submit</button>
     </div>
-
   </div>
 </template>
 
 <template id="monthly-planning-page">
   <div class="vue-component">
-    <h3>{{ message }}</h3>
-    <div v-for="debt in debts">
-      {{debt.due_date}} {{ debt.name }} ==> ${{ debt.min_amt_due }} 
-      * Priority: {{ debt.priority }} *
+    <div class="container">
+      <h3>{{ message }}</h3>
+      <form>
+      <div v-for="debt in debts">
+          <div class="form-group">
+            <label class="col-sm-2 col-form-label">{{debt.name}}</label>
+            <input type="email" class="form-control" aria-describedby="emailHelp" v-bind:placeholder="debt.min_amt_due">
+            <small id="emailHelp" class="form-text text-muted">{{debt.priority}}</small>
+          </div>
+      </div>
+      <div class="form-text text-muted">Please verify that you have updated this page to the actual payments you made this month before you click submit.</div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
     </div>
   </div>
 </template>
