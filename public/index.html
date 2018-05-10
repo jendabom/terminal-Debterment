@@ -194,10 +194,22 @@
     <div class="container">
       <h3>{{ message }}</h3>
       <h5>First priority: {{first_debt.name}}</h5>
+      <ul id="thumbs" class="grid cs-style-3 portfolio">
       <div v-for="debt in debts">
         <p v-if="debt.name === first_debt.name">
-          {{ debt.name }} ==> ${{ parseFloat(debt.min_amt_due) + parseFloat(showall['incomes'][0].additional_amount)}} new bal: {{debt.total_balance - (parseFloat(debt.min_amt_due) + parseFloat(showall['incomes'][0].additional_amount))}}</p>
-        <p v-else>{{ debt.name }} ==> ${{ debt.min_amt_due }} <p>Date due: {{debt.due_date}}</p></p>
+        <li class="item-thumbs span3 design" data-id="id-0" data-type="web">
+          <div class="item">
+            <p>{{ debt.name }}</p>
+            <figure>
+              <div><img src="img/dummies/works/1.jpg" alt=""></div>
+              <figcaption>
+                  <p>{{ debt.name }}</p>
+                  <p>Minimum amount due: {{ debt.min_amt_due }}</p>
+                  <p>Date due: {{debt.due_date}}</p>
+              </figcaption>
+            </figure>
+          </div>
+        </li>
       </div>
     </div>
   </div>

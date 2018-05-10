@@ -745,9 +745,9 @@ ul.lush-slider {
 	position: absolute;
 	top: 0;
 	left: 0;
-	padding: 20px 0;
+	padding: 10px 0;
 	background: #2c3f52;
-	color: #ed4e6e;
+	color: #e8e7ec;
 }
 
 .grid figcaption h3 {
@@ -816,7 +816,7 @@ ul.lush-slider {
 
 .cs-style-3 figcaption p {
 	text-align:center;
-	margin-top:20px;
+	margin-top: 5px;
 }
 
 .cs-style-3 figcaption p i {

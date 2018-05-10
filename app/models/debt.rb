@@ -13,7 +13,7 @@ class Debt < ApplicationRecord
       debt_type: debt_type,
       limit: card_limit, 
       priority: priority,
-      pretty_priority: priority.ordinalize
+      pretty_priority: priority_ordinalize
     }
   end
 
@@ -47,5 +47,13 @@ class Debt < ApplicationRecord
 
   def display_apr
     (apr * 100).to_s + "%"
+  end
+
+  def priority_ordinalize
+    if total_balance != 0
+      priority.ordinalize
+    else
+      priority
+    end
   end
 end
