@@ -196,7 +196,14 @@ var MonthlyPlanningPage = {
       this.showall = response.data;
     }.bind(this));
   },
-  methods: {},
+  methods: {
+    payDown: function() {
+      console.log("updating the debt ....");
+      for (let i = 0; i < this.debts.length; i++) {
+        console.log(this.debts[i].min_amt_due);
+      }
+    }
+  },
   computed: {}
 };
 
