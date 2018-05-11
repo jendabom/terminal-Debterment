@@ -73,7 +73,7 @@ class DebtsController < ApplicationController
   end
 
   def sorted_debts
-    payoff_debts = Debt.where.not(total_balance: 0)
+    payoff_debts = Debt.where.not(total_balance: 0) && Debt.where(user_id: current_user.id) 
 
     if current_user.preferred_payoff_method == "snowball"
       credit_card_debts = payoff_debts.order(:total_balance).where(
@@ -81,15 +81,12 @@ class DebtsController < ApplicationController
         debt_type: "Credit Card"
       )
     elsif current_user.preferred_payoff_method == "avalanche"
-      credit_card_debts = payoff_debts.order(apr: :desc).where(
-        user_id: current_user.id, 
+      credit_card_debts = payoff_debts.order(apr: :desc).where( 
         debt_type: "Credit Card"
       )
     end
 
-    non_credit_card_debts = payoff_debts.where(
-        user_id: current_user.id
-      ) && payoff_debts.where.not(
+    non_credit_card_debts = payoff_debts.where.not(
         debt_type: "Credit Card"
       )
     all_debts = credit_card_debts + non_credit_card_debts
@@ -108,8 +105,10 @@ class DebtsController < ApplicationController
   def set_priority(debts)
     i = 1
     debts.each do |debt|
-      debt.update_attribute(:priority, i)
-      i += 1
+      if debt.total_balance != 0
+        debt.update_attribute(:priority, i)
+        i += 1
+      end
     end
   end
 end
