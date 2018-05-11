@@ -73,15 +73,16 @@ class DebtsController < ApplicationController
   end
 
   def sorted_debts
-    payoff_debts = Debt.where.not(total_balance: 0) && Debt.where(user_id: current_user.id) 
+    payoff_debts = Debt.where.not(total_balance: 0)
 
     if current_user.preferred_payoff_method == "snowball"
-      credit_card_debts = payoff_debts.order(:total_balance).where(
-        user_id: current_user.id, 
+      credit_card_debts = payoff_debts.order(:total_balance).where( 
+        user_id: current_user.id,
         debt_type: "Credit Card"
       )
     elsif current_user.preferred_payoff_method == "avalanche"
       credit_card_debts = payoff_debts.order(apr: :desc).where( 
+        user_id: current_user.id,
         debt_type: "Credit Card"
       )
     end
@@ -89,7 +90,7 @@ class DebtsController < ApplicationController
     non_credit_card_debts = payoff_debts.where.not(
         debt_type: "Credit Card"
       )
-    all_debts = credit_card_debts + non_credit_card_debts
+    all_debts = credit_card_debts + non_credit_card_debts.where(user_id: current_user.id)
     set_priority(all_debts)
     render json: all_debts.as_json
   end

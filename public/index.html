@@ -180,7 +180,7 @@
         <div v-for="debt in debts">
           <li class="item-thumbs span3 design" data-id="id-0" data-type="web">
             <div class="item">
-              <p>{{ debt.name }}<span v-if="debt.name === first_debt.name"> (pay first) </span></p>
+              <p>{{ debt.name }}<span v-if="debt.name === first_debt.name"> (first) </span></p>
               <figure>
                 <div>
                   <img v-if="debt.debt_type === 'Credit Card'" src="img/dummies/works/cc2.jpg" alt="">
