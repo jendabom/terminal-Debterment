@@ -2,6 +2,7 @@ class Debt < ApplicationRecord
   belongs_to :user
   def as_json
     {
+      id: id,
       name: name,
       total_balance: total_balance,
       first_target: first_target,

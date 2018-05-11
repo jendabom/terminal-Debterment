@@ -199,9 +199,14 @@ var MonthlyPlanningPage = {
   methods: {
     payDown: function() {
       console.log("updating the debt ....");
+      var params = [];
       for (let i = 0; i < this.debts.length; i++) {
-        console.log(this.debts[i].min_amt_due);
+        var newTotalBalance = this.debts[i].total_balance - this.debts[i].min_amt_due;
+        params.push({id: this.debts[i].id, total_balance: newTotalBalance });
       }
+      axios.patch("/debts/all", params).then(function(response) {
+        router.push("/");
+      });
     }
   },
   computed: {}

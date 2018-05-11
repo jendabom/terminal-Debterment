@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   post '/debts' => 'debts#create'
   get '/debts/:id' => 'debts#show'
   delete 'debts/:id' => 'debts#destroy'
-  put 'debts/:id' => 'debts#update'
+  patch 'debts/all' => 'debts#payoff_update'
+  patch 'debts/:id' => 'debts#update'
   
   get '/snowball' => 'debts#snowball'
   get '/avalanche' => 'debts#avalanche'

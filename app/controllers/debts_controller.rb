@@ -1,4 +1,6 @@
 class DebtsController < ApplicationController
+  wrap_parameters format: [:json]
+
   def index
     debts = Debt.where(user_id: current_user.id)
     render json: debts.as_json
@@ -44,6 +46,14 @@ class DebtsController < ApplicationController
       debt_type: params[:debt_type], 
       card_limit: params[:card_limit],
       priority: params[:priority] )
+  end
+
+  def payoff_update
+    params_body = params["_json"]
+    params_body.each do |param|
+      debt = Debt.find(param[:id])
+      debt.update(total_balance: param[:total_balance])
+    end
   end
 
   def snowball
