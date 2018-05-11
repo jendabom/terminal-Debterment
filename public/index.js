@@ -205,7 +205,7 @@ var MonthlyPlanningPage = {
         params.push({id: this.debts[i].id, total_balance: newTotalBalance });
       }
       axios.patch("/debts/all", params).then(function(response) {
-        router.push("/");
+        router.push("/all_debts");
       });
     }
   },

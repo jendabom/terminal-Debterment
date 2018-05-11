@@ -11,6 +11,7 @@ class Debt < ApplicationRecord
       min_amt_due: min_amt_due,
       #min_payment_payoff_months: months_til_min_only_payoff.to_i,
       due_date: due_date,
+      pretty_due_date: due_date.ordinalize,
       debt_type: debt_type,
       limit: card_limit, 
       priority: priority,

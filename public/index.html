@@ -177,22 +177,26 @@
       <h3>{{ message }}</h3>
       <h5>First priority: {{first_debt.name}}</h5>
       <ul id="thumbs" class="grid cs-style-3 portfolio">
-      <div v-for="debt in debts">
-        <p v-if="debt.name === first_debt.name">
-        <li class="item-thumbs span3 design" data-id="id-0" data-type="web">
-          <div class="item">
-            <p>{{ debt.name }}</p>
-            <figure>
-              <div><img src="img/dummies/works/1.jpg" alt=""></div>
-              <figcaption>
-                  <p>{{ debt.name }}</p>
-                  <p>Minimum amount due: {{ debt.min_amt_due }}</p>
-                  <p>Date due: {{debt.due_date}}</p>
-              </figcaption>
-            </figure>
-          </div>
-        </li>
-      </div>
+        <div v-for="debt in debts">
+          <li class="item-thumbs span3 design" data-id="id-0" data-type="web">
+            <div class="item">
+              <p>{{ debt.name }}<span v-if="debt.name === first_debt.name"> (pay first) </span></p>
+              <figure>
+                <div>
+                  <img v-if="debt.debt_type === 'Credit Card'" src="img/dummies/works/cc2.jpg" alt="">
+                  <img v-else-if="debt.debt_type === 'Car Loan'" src="img/dummies/works/carloan.png" alt="">
+                  <img v-else src="img/dummies/works/loan.jpg" alt="">
+                </div>
+                <figcaption>
+                    <p>{{ debt.name }} - ${{ debt.total_balance }}</p>
+                    <p>{{ debt.debt_type }}</p>
+                    <p>Due on the {{debt.pretty_due_date}} each month</p>
+                </figcaption>
+              </figure>
+            </div>
+          </li>
+        </div>
+      </ul>
     </div>
   </div>
 </template>

@@ -815,8 +815,9 @@ ul.lush-slider {
 }
 
 .cs-style-3 figcaption p {
+  font-size:10px;
 	text-align:center;
-	margin-top: 5px;
+	margin-top: 2px;
 }
 
 .cs-style-3 figcaption p i {
