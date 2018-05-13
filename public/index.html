@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Remember - Multipurpose bootstrap site template</title>
+  <title>Debterment - Debt is truly to your detriment</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Your page description here" />
   <meta name="author" content="" />
@@ -188,8 +188,8 @@
                 </div>
                 <figcaption>
                     <p>{{ debt.name }} - ${{ debt.total_balance }}</p>
-                    <p>{{ debt.debt_type }}</p>
                     <p>Due on the {{debt.pretty_due_date}} each month</p>
+                    <a v-bind:href="'/#/debts/' + debt.id" class="btn btn-primary">More Details</a>
                 </figcaption>
               </figure>
             </div>
@@ -456,9 +456,11 @@
   <div class="vue-component">
     <div class="container">
       <h3>{{ message }}</h3>
+      <p>Extra money this month: {{additional_amount}}</p>
       <div v-for="debt,$index in debts">
           <div class="form-group">
             <label class="col-sm-2 col-form-label">{{debt.name}} -- ({{debt.pretty_priority}} priority)</label>
+            <div v-if="debt.priority === 1"> {{ debt.total_balance }} - {{ additional_amount }}</div>
             <input v-model="debts[$index].min_amt_due" type="text" class="form-control">
             <small class="form-text text-muted">(Current Balance: {{debt.total_balance}})</small>
           </div>
@@ -476,6 +478,19 @@
       <p><a href="/#/add_debt">Add Debt</a></p>
       <p><a href="/#/add_expense">Add Expense</a></p>
       <p><a href="/#/add_income">Add Income</a></p>
+    </div>
+  </div>
+</template>
+
+<template id="debt-show-page">
+  <div class="vue-component">
+    <div class="container">
+      <h3>{{ debt.name }} - ${{ debt.total_balance }}</h3>
+      <p>{{ debt.debt_type }}</p>
+      <p>This is your {{debt.pretty_priority}} priority.</p>
+      <p>Due on the {{debt.pretty_due_date}} each month.</p>
+      <p><a href="/#/all_debts" class="btn btn-primary">All Debts</a>
+      <a href="/#/payoff_plan" class="btn btn-primary">Payoff Plan</a></p>
     </div>
   </div>
 </template>

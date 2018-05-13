@@ -149,6 +149,27 @@ var DebtPage = {
   computed: {}
 };
 
+var DebtShowPage = {
+  template: "#debt-show-page",
+  data: function() {
+    return {
+      message: "Welcome to Vue.js!",
+      debt: {
+        name: "",
+        min_amt_due: 0
+      }
+    };
+  },
+  created: function() {
+    axios.get("/debts/" + this.$route.params.id).then(function(response) {
+      this.debt = response.data;
+      console.log(this.debt)
+    }.bind(this));
+  },
+  methods: {},
+  computed: {}
+};
+
 var AllDebtPage = {
   template: "#all-debt-page",
   data: function() {
@@ -183,7 +204,8 @@ var MonthlyPlanningPage = {
     return {
       message: "Payoff Plan!", 
       debts: [],
-      showall:  []
+      showall:  [], 
+      additional_amount: ""
     };
   },
   created: function() {
@@ -194,6 +216,7 @@ var MonthlyPlanningPage = {
     axios.get("/showall").then(function(response) {
       console.log(response.data);
       this.showall = response.data;
+      this.additional_amount = this.showall['user_info'][0].additional_amount;
     }.bind(this));
   },
   methods: {
@@ -356,12 +379,13 @@ var LogoutPage = {
 var router = new VueRouter({
   routes: [
     { path: "/", component: HomePage },
-    { path: "/my_expenses", component: ExpensePage },
-    { path: "/my_debts", component: DebtPage },
-    { path: "/my_incomes", component: IncomePage },
-    { path: "/my_snowball", component: SnowballDebtPage },
-    { path: "/my_avalanche", component: AvalancheDebtPage },
-    { path: "/add_debt", component: AddDebtPage },
+    { path: "/expenses", component: ExpensePage },
+    { path: "/debts", component: DebtPage },
+    { path: "/debts/new", component: AddDebtPage },
+    { path: "/debts/:id", component: DebtShowPage },
+    { path: "/incomes", component: IncomePage },
+    { path: "/snowball", component: SnowballDebtPage },
+    { path: "/avalanche", component: AvalancheDebtPage },
     { path: "/add_expense", component: AddExpensePage }, 
     { path: "/add_income", component: AddIncomePage }, 
     { path: "/signup", component: SignupPage },
