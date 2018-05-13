@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -146,11 +146,11 @@
   <div class="container"> 
   <h2>{{ message }}</h2>
     <ul>
-    <li>Min Payments each Month: {{ showall['incomes'][0].min_all_paying_off }}</li>
-    <li>Additional Payoff Amount: {{ showall['incomes'][0].additional_amount }}</li>
-    <li>Total Debt: {{ showall['incomes'][0].complete_payoff_total }}</li>
-    <li>Total Credit Card Debt: {{ showall['incomes'][0].credit_card_debt_total }}</li>
-    <li>Non Credit Card Debt Total: {{ showall['incomes'][0].other_debt_total }}</li>
+    <li>Min Payments each Month: {{ showall['user_info'][0].min_all_paying_off }}</li>
+    <li>Additional Payoff Amount: {{ showall['user_info'][0].additional_amount }}</li>
+    <li>Total Debt: {{ showall['user_info'][0].complete_payoff_total }}</li>
+    <li>Total Credit Card Debt: {{ showall['user_info'][0].credit_card_debt_total }}</li>
+    <li>Non Credit Card Debt Total: {{ showall['user_info'][0].other_debt_total }}</li>
     </ul>
   </div>
 </template>
@@ -175,12 +175,11 @@
   <div class="vue-component">
     <div class="container">
       <h3>{{ message }}</h3>
-      <h5>First priority: {{first_debt.name}}</h5>
       <ul id="thumbs" class="grid cs-style-3 portfolio">
         <div v-for="debt in debts">
           <li class="item-thumbs span3 design" data-id="id-0" data-type="web">
             <div class="item">
-              <p>{{ debt.name }}<span v-if="debt.name === first_debt.name"> (first) </span></p>
+              <p>{{ debt.name }}</p>
               <figure>
                 <div>
                   <img v-if="debt.debt_type === 'Credit Card'" src="img/dummies/works/cc2.jpg" alt="">

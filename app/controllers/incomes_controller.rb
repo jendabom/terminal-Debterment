@@ -6,6 +6,7 @@ class IncomesController < ApplicationController
 
   def show_all
     all_data = {
+      user_info: User.where(id: current_user.id),
       incomes: Income.where(user_id: current_user.id),
       expenses: Expense.where(user_id: current_user.id),
       debts: Debt.where(user_id: current_user.id)
