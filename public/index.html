@@ -23,6 +23,7 @@
   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png" />
   <link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png" />
   <link rel="shortcut icon" href="ico/favicon.png" />
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   <script src="https://unpkg.com/vue/dist/vue.js"></script>
   <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
   <script src="https://unpkg.com/axios/dist/axios.js"></script>
@@ -62,12 +63,12 @@
                         <li><a href="/#/all_debts">All Debts</a></li>
                         <li><a href="/#/payoff_plan">Payoff Plan</a></li>
                         <li><a href="/#/settings">User Settings</a></li>
-                        <li><a href="404.html">404</a></li>
+                        <!-- <li><a href="404.html">404</a></li> -->
                       </ul>
                     </li>
-                    <li>
+                    <!-- <li>
                       <a href="contact.html">Contact </a>
-                    </li>
+                    </li> -->
                   </ul>
                 </nav>
               </div>
@@ -120,6 +121,51 @@
   <script src="js/portfolio/jquery.quicksand.js"></script>
   <script src="js/portfolio/setting.js"></script>
   <script src="js/animate.js"></script>
+
+  <script>
+var url = 'http://localhost:3000/chart_info';
+console.log(url)
+Plotly.d3.json(url, function(error, data) {
+console.log(data.length)
+  if (error) return console.warn(error);
+
+  console.log(data);
+  var x = [], y = [], addX = [], addY = [];
+  for (var i=0; i<data.length; i++) {
+    row = data[i];
+    x.push( row['date'] );
+    y.push( row['total_balance'] );
+    addX.push( row['date'] );
+    addY.push( row['additional_paydown']);
+  }
+
+  var trace1 = {
+    type: "scatter",
+    mode: "lines",
+    name: 'Minimum Only',
+    x: (x),
+    y: (y),
+    line: {color: '#7F7F7F'}
+  }
+
+  var trace2 = {
+    type: "scatter",
+    mode: "lines",
+    name: 'With Additional',
+    x: (addX),
+    y: (addY),
+    line: {color: '#17BECF'}
+  }
+
+  var data = [trace1,trace2];
+      
+  var layout = {
+    title: 'PayDownDebt', 
+  };
+
+  Plotly.newPlot('myDiv', data, layout);
+  })
+  </script>
 
   <!-- Template Custom JavaScript File -->
   <script src="js/custom.js"></script>
@@ -174,6 +220,7 @@
 <template id="all-debt-page">
   <div class="vue-component">
     <div class="container">
+      <div id="myDiv"></div>
       <h3>{{ message }}</h3>
       <ul id="thumbs" class="grid cs-style-3 portfolio">
         <div v-for="debt in debts">

@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get '/avalanche' => 'debts#avalanche'
   get '/alldebts' => 'debts#sorted_debts'
   get '/monthly_payoff' => 'debts#monthly_due_date_order'
+  get '/chart_info' => 'debts#dates_for_payoff_chart'
 
   get '/expenses' => 'expenses#index'
   post '/expenses' => 'expenses#create'

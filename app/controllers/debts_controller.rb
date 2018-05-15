@@ -1,4 +1,5 @@
 class DebtsController < ApplicationController
+  require 'date'
   wrap_parameters format: [:json]
 
   def index
@@ -111,5 +112,50 @@ class DebtsController < ApplicationController
         i += 1
       end
     end
+  end
+
+  def complete_payoff_total
+    debts = Debt.where(user_id: 1)
+    sum = 0
+    debts.each do |debt|
+      sum += debt.total_balance
+    end
+    return sum
+  end
+
+  def min_all_paying_off
+    debts = Debt.where(user_id: 1)
+    sum = 0
+    debts.each do |debt|
+      sum += debt.min_amt_due
+    end
+    return sum
+  end
+
+  def dates_for_payoff_chart
+    current_user = User.first
+    dates = []
+    start_date = current_user.startDate
+    dates << {date: start_date, total_balance: complete_payoff_total, additional_paydown: complete_payoff_total}
+
+    new_complete_payoff_total_with_min = complete_payoff_total - min_all_paying_off
+    new_complete_payoff_total_with_additional = complete_payoff_total - (min_all_paying_off + 500)
+
+    current_month = start_date
+      while new_complete_payoff_total_with_min > 0 do
+      complete_payoff_total = new_complete_payoff_total_with_min
+
+      next_month = current_month >> 1
+      p next_month
+      dates << {date: next_month, total_balance: (complete_payoff_total), additional_paydown: new_complete_payoff_total_with_additional}
+      new_complete_payoff_total_with_min = complete_payoff_total - min_all_paying_off
+      if new_complete_payoff_total_with_additional > (min_all_paying_off + 500)
+        new_complete_payoff_total_with_additional = new_complete_payoff_total_with_additional - (min_all_paying_off + 500)
+      else
+        new_complete_payoff_total_with_additional = 0
+      end
+      current_month = next_month
+    end
+    render json: dates.as_json
   end
 end

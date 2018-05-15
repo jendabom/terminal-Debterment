@@ -46,10 +46,10 @@ class User < ApplicationRecord
   end
 
   def min_all_paying_off
-    min_payments = Debt.where(user_id: self.id)
+    debts = Debt.where(user_id: self.id)
     sum = 0
-    min_payments.each do |min_pay|
-      sum += min_pay.min_amt_due
+    debts.each do |debt|
+      sum += debt.min_amt_due
     end
     return sum
   end
