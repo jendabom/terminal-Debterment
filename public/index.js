@@ -177,25 +177,102 @@ var AllDebtPage = {
       message: "Outstanding Debts:", 
       debts: [],
       showall:[], 
-      first_debt: "", 
-      second_debt: ""
+      additional_amount: 500
     };
   },
   created: function() {
     axios.get("/alldebts").then(function(response) {
       this.debts = response.data;
-      this.first_debt = this.debts[0]
-      this.second_debt = this.debts[1]
-      console.log(this.debts)
     }.bind(this));
     axios.get("/showall").then(function(response) {
-      console.log(response.data);
       this.showall = response.data;
     }.bind(this));
   },
   methods: {
+    updateGraph: function() {
+      var url = '/chart_info?additional_amount=' + this.additional_amount;
+
+  Plotly.d3.json(url, function(error, data) {
+    if (error) return console.warn(error);
+
+    var x = [], y = [], addX = [], addY = [];
+    for (var i=0; i<data.length; i++) {
+      row = data[i];
+      x.push( row['date'] );
+      y.push( row['total_balance'] );
+      addX.push( row['date'] );
+      addY.push( row['additional_paydown']);
+    }
+
+    var trace1 = {
+      type: "bar",
+      mode: "lines",
+      name: 'Minimum Only',
+      x: (x),
+      y: (y),
+      line: {color: '#7F7F7F'}
+    }
+
+    var trace2 = {
+      type: "bar",
+      mode: "lines",
+      name: 'With Additional',
+      x: (addX),
+      y: (addY),
+      line: {color: '#17BECF'}
+    }
+
+    var data = [trace1,trace2];
+        
+    var layout = {
+      title: 'PayDownDebt', 
+    };
+
+    Plotly.newPlot('myDiv', data, layout);
+    })
+    }
   },
-  computed: {}
+  computed: {},
+  mounted: function() {
+    var url = '/chart_info?additional_amount=500';
+  Plotly.d3.json(url, function(error, data) {
+    if (error) return console.warn(error);
+    var x = [], y = [], addX = [], addY = [];
+    for (var i=0; i<data.length; i++) {
+      row = data[i];
+      x.push( row['date'] );
+      y.push( row['total_balance'] );
+      addX.push( row['date'] );
+      addY.push( row['additional_paydown']);
+    }
+
+    var trace1 = {
+      type: "scatter",
+      mode: "lines",
+      name: 'Minimum Only',
+      x: (x),
+      y: (y),
+      line: {color: '#7F7F7F'}
+    }
+
+    var trace2 = {
+      type: "scatter",
+      mode: "lines",
+      name: 'With Additional',
+      x: (addX),
+      y: (addY),
+      line: {color: '#17BECF'}
+    }
+
+    var data = [trace1,trace2];
+        
+    var layout = {
+      title: 'PayDownDebt', 
+    };
+
+    Plotly.newPlot('myDiv', data, layout);
+    })
+  }
 };
 
 var MonthlyPlanningPage = {

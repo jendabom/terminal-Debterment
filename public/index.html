@@ -123,48 +123,7 @@
   <script src="js/animate.js"></script>
 
   <script>
-var url = 'http://localhost:3000/chart_info';
-console.log(url)
-Plotly.d3.json(url, function(error, data) {
-console.log(data.length)
-  if (error) return console.warn(error);
 
-  console.log(data);
-  var x = [], y = [], addX = [], addY = [];
-  for (var i=0; i<data.length; i++) {
-    row = data[i];
-    x.push( row['date'] );
-    y.push( row['total_balance'] );
-    addX.push( row['date'] );
-    addY.push( row['additional_paydown']);
-  }
-
-  var trace1 = {
-    type: "scatter",
-    mode: "lines",
-    name: 'Minimum Only',
-    x: (x),
-    y: (y),
-    line: {color: '#7F7F7F'}
-  }
-
-  var trace2 = {
-    type: "scatter",
-    mode: "lines",
-    name: 'With Additional',
-    x: (addX),
-    y: (addY),
-    line: {color: '#17BECF'}
-  }
-
-  var data = [trace1,trace2];
-      
-  var layout = {
-    title: 'PayDownDebt', 
-  };
-
-  Plotly.newPlot('myDiv', data, layout);
-  })
   </script>
 
   <!-- Template Custom JavaScript File -->
@@ -221,6 +180,9 @@ console.log(data.length)
   <div class="vue-component">
     <div class="container">
       <div id="myDiv"></div>
+      <label for="additional_amount">Additional Amount:</label>
+      <input v-model="additional_amount" type="text" class="form-control">
+      <a class="btn btn-primary" v-on:click="updateGraph()">Update Graph</a>
       <h3>{{ message }}</h3>
       <ul id="thumbs" class="grid cs-style-3 portfolio">
         <div v-for="debt in debts">

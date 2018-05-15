@@ -139,7 +139,7 @@ class DebtsController < ApplicationController
     dates << {date: start_date, total_balance: complete_payoff_total, additional_paydown: complete_payoff_total}
 
     new_complete_payoff_total_with_min = complete_payoff_total - min_all_paying_off
-    new_complete_payoff_total_with_additional = complete_payoff_total - (min_all_paying_off + 500)
+    new_complete_payoff_total_with_additional = complete_payoff_total - (min_all_paying_off + params[:additional_amount].to_i)
 
     current_month = start_date
       while new_complete_payoff_total_with_min > 0 do
@@ -149,8 +149,8 @@ class DebtsController < ApplicationController
       p next_month
       dates << {date: next_month, total_balance: (complete_payoff_total), additional_paydown: new_complete_payoff_total_with_additional}
       new_complete_payoff_total_with_min = complete_payoff_total - min_all_paying_off
-      if new_complete_payoff_total_with_additional > (min_all_paying_off + 500)
-        new_complete_payoff_total_with_additional = new_complete_payoff_total_with_additional - (min_all_paying_off + 500)
+      if new_complete_payoff_total_with_additional > (min_all_paying_off + params[:additional_amount].to_i)
+        new_complete_payoff_total_with_additional = new_complete_payoff_total_with_additional - (min_all_paying_off + params[:additional_amount].to_i)
       else
         new_complete_payoff_total_with_additional = 0
       end
