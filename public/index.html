@@ -177,6 +177,23 @@
 
 <template id="all-debt-page">
   <div class="vue-component">
+    <section id="inner-headline">
+      <div class="container">
+        <div class="row">
+          <div class="span4">
+            <div class="inner-heading">
+              <h2>{{ pageName }}</h2>
+            </div>
+          </div>
+          <div class="span8">
+            <ul class="breadcrumb">
+              <li><a href="/">Home</a> <i class="icon-angle-right"></i></li>
+              <li class="active">{{ pageName }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
     <div class="container">
       <div id="myDiv"></div>
       <label for="additional_amount">Additional Amount:</label>
@@ -408,9 +425,24 @@
 
 <template id="signup-page">
   <div class="vue-component">
-
+    <section id="inner-headline">
+      <div class="container">
+        <div class="row">
+          <div class="span4">
+            <div class="inner-heading">
+              <h2>{{ message }}</h2>
+            </div>
+          </div>
+          <div class="span8">
+            <ul class="breadcrumb">
+              <li><a href="/">Home</a> <i class="icon-angle-right"></i></li>
+              <li class="active">{{ message }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
     <div class="container">
-      <h1>Signup</h1>
       <ul>
         <li class="text-danger" v-for="error in errors">{{ error }}</li>
       </ul>
@@ -442,9 +474,24 @@
 
 <template id="login-page">
   <div class="vue-component">
-
+    <section id="inner-headline">
+      <div class="container">
+        <div class="row">
+          <div class="span4">
+            <div class="inner-heading">
+              <h2>{{ message }}</h2>
+            </div>
+          </div>
+          <div class="span8">
+            <ul class="breadcrumb">
+              <li><a href="/">Home</a> <i class="icon-angle-right"></i></li>
+              <li class="active">{{ message }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
     <div class="container">
-      <h1>Login</h1>
       <ul>
         <li class="text-danger" v-for="error in errors">{{ error }}</li>
       </ul>
@@ -463,8 +510,24 @@
 
 <template id="monthly-planning-page">
   <div class="vue-component">
+    <section id="inner-headline">
+      <div class="container">
+        <div class="row">
+          <div class="span4">
+            <div class="inner-heading">
+              <h2>{{ message }}</h2>
+            </div>
+          </div>
+          <div class="span8">
+            <ul class="breadcrumb">
+              <li><a href="/">Home</a> <i class="icon-angle-right"></i></li>
+              <li class="active">{{ message }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
     <div class="container">
-      <h3>{{ message }}</h3>
       <p>Extra money this month: {{additional_amount}}</p>
       <div v-for="debt,$index in debts">
           <div class="form-group">
@@ -481,15 +544,31 @@
 
 <template id="user-settings-page">
   <div class="vue-component">
+    <section id="inner-headline">
+      <div class="container">
+        <div class="row">
+          <div class="span4">
+            <div class="inner-heading">
+              <h2>{{ message }}</h2>
+            </div>
+          </div>
+          <div class="span8">
+            <ul class="breadcrumb">
+              <li><a href="/">Home</a> <i class="icon-angle-right"></i></li>
+              <li class="active">{{ message }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
     <div class="container">
-      <h2>{{ message }}</h2>
       <div class="row_settings">
           <div class="card_settings">
             <img class="card-img-top" src="img/header.jpeg" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title">Add a Debt</h5>
               <p class="card-text">Add more debts or review those that you have added and start planning on your payoff approach.</p>
-              <a href="/#/add_debt" class="btn btn-primary">Add Debt</a>
+              <a href="/#/debts/new" class="btn btn-primary">Add Debt</a>
               <a href="/#/all_debts" class="btn btn-primary">View All Debts</a>
             </div>
           </div>
@@ -520,6 +599,23 @@
 
 <template id="debt-show-page">
   <div class="vue-component">
+    <section id="inner-headline">
+      <div class="container">
+        <div class="row">
+          <div class="span4">
+            <div class="inner-heading">
+              <h2>{{ message }}</h2>
+            </div>
+          </div>
+          <div class="span8">
+            <ul class="breadcrumb">
+              <li><a href="/">Home</a> <i class="icon-angle-right"></i></li>
+              <li class="active">{{ message }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
     <div class="container">
       <h3>{{ debt.name }} - ${{ debt.total_balance }}</h3>
       <p>{{ debt.debt_type }}</p>

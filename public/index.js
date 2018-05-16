@@ -153,7 +153,7 @@ var DebtShowPage = {
   template: "#debt-show-page",
   data: function() {
     return {
-      message: "Welcome to Vue.js!",
+      message: "Debt Detail",
       debt: {
         name: "",
         min_amt_due: 0
@@ -173,6 +173,7 @@ var AllDebtPage = {
   template: "#all-debt-page",
   data: function() {
     return {
+      pageName: "Debt Overview",
       message: "Outstanding Debts:", 
       debts: [],
       showall:[], 
@@ -218,7 +219,7 @@ var AllDebtPage = {
           name: 'With Additional Amount',
           x: (addX),
           y: (addY),
-          line: {color: '#17BECF'}
+          marker: {color: '#17BECF'}
         }
 
         var data = [trace1,trace2];
@@ -264,7 +265,7 @@ var AllDebtPage = {
       name: 'With Additional Amount',
       x: (addX),
       y: (addY),
-      line: {color: '#17BECF'}
+      marker: {color: '#17BECF'}
     }
 
     var data = [trace1,trace2];
@@ -380,6 +381,7 @@ var SignupPage = {
   template: "#signup-page",
   data: function() {
     return {
+      message: "Sign Up",
       name: "",
       email: "",
       password: "",
@@ -414,6 +416,7 @@ var LoginPage = {
   template: "#login-page",
   data: function() {
     return {
+      message: "Login",
       email: "",
       password: "",
       errors: []
