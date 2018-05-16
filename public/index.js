@@ -163,7 +163,6 @@ var DebtShowPage = {
   created: function() {
     axios.get("/debts/" + this.$route.params.id).then(function(response) {
       this.debt = response.data;
-      console.log(this.debt)
     }.bind(this));
   },
   methods: {},
@@ -192,44 +191,48 @@ var AllDebtPage = {
     updateGraph: function() {
       var url = '/chart_info?additional_amount=' + this.additional_amount;
 
-  Plotly.d3.json(url, function(error, data) {
-    if (error) return console.warn(error);
+      Plotly.d3.json(url, function(error, data) {
+        if (error) return console.warn(error);
 
-    var x = [], y = [], addX = [], addY = [];
-    for (var i=0; i<data.length; i++) {
-      row = data[i];
-      x.push( row['date'] );
-      y.push( row['total_balance'] );
-      addX.push( row['date'] );
-      addY.push( row['additional_paydown']);
-    }
+        var x = [], y = [], addX = [], addY = [];
+        for (var i=0; i<data.length; i++) {
+          row = data[i];
+          x.push( row['date'] );
+          y.push( row['total_balance'] );
+          addX.push( row['date'] );
+          addY.push( row['additional_paydown']);
+        }
 
-    var trace1 = {
-      type: "bar",
-      mode: "lines",
-      name: 'Minimum Only',
-      x: (x),
-      y: (y),
-      line: {color: '#7F7F7F'}
-    }
+        var trace1 = {
+          type: "markers",
+          mode: "lines+markers",
+          name: 'Making Minimum Payments Only',
+          x: (x),
+          y: (y),
+          line: {color: '#7F7F7F'}
+        }
 
-    var trace2 = {
-      type: "bar",
-      mode: "lines",
-      name: 'With Additional',
-      x: (addX),
-      y: (addY),
-      line: {color: '#17BECF'}
-    }
+        var trace2 = {
+          type: "bar",
+          mode: "lines",
+          name: 'With Additional Amount',
+          x: (addX),
+          y: (addY),
+          line: {color: '#17BECF'}
+        }
 
-    var data = [trace1,trace2];
-        
-    var layout = {
-      title: 'PayDownDebt', 
-    };
+        var data = [trace1,trace2];
+            
+        var layout = {
+          title: 'PayDownDebt', 
+        };
 
-    Plotly.newPlot('myDiv', data, layout);
-    })
+      Plotly.newPlot('myDiv', data, layout);
+      });
+    }, 
+    paymentPlan: function() {
+      Vue.prototype.$additional_amount = this.additional_amount;
+      router.push("/payoff_plan");
     }
   },
   computed: {},
@@ -248,17 +251,17 @@ var AllDebtPage = {
 
     var trace1 = {
       type: "scatter",
-      mode: "lines",
-      name: 'Minimum Only',
+      mode: "lines+markers",
+      name: 'Making Minimum Payments Only',
       x: (x),
       y: (y),
       line: {color: '#7F7F7F'}
     }
 
     var trace2 = {
-      type: "scatter",
+      type: "bar",
       mode: "lines",
-      name: 'With Additional',
+      name: 'With Additional Amount',
       x: (addX),
       y: (addY),
       line: {color: '#17BECF'}
@@ -288,17 +291,14 @@ var MonthlyPlanningPage = {
   created: function() {
     axios.get("/monthly_payoff").then(function(response) {
       this.debts = response.data;
-      console.log(this.debts);
     }.bind(this));
     axios.get("/showall").then(function(response) {
-      console.log(response.data);
       this.showall = response.data;
-      this.additional_amount = this.showall['user_info'][0].additional_amount;
+      this.additional_amount = this.$additional_amount;
     }.bind(this));
   },
   methods: {
     payDown: function() {
-      console.log("updating the debt ....");
       var params = [];
       for (let i = 0; i < this.debts.length; i++) {
         var newTotalBalance = this.debts[i].total_balance - this.debts[i].min_amt_due;
@@ -357,7 +357,6 @@ var HomePage = {
   },
   created: function() {
     axios.get("/showall").then(function(response) {
-      console.log(response.data);
       this.showall = response.data;
     }.bind(this));
   },

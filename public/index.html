@@ -61,7 +61,6 @@
                       <a href="#">Pages <i class="icon-angle-down"></i></a>
                       <ul class="dropdown-menu">
                         <li><a href="/#/all_debts">All Debts</a></li>
-                        <li><a href="/#/payoff_plan">Payoff Plan</a></li>
                         <li><a href="/#/settings">User Settings</a></li>
                         <!-- <li><a href="404.html">404</a></li> -->
                       </ul>
@@ -87,7 +86,7 @@
           <div class="row">
             <div class="span6">
               <div class="copyright">
-                <p><span>&copy; Remember Inc. All right reserved</span></p>
+                <p><span>&copy; Debterment. All right reserved</span></p>
               </div>
 
             </div>
@@ -100,7 +99,7 @@
                   Licensing information: https://bootstrapmade.com/license/
                   Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Remember
                 -->
-                Created by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+                Created by <a href="https://jendabom.github.io/">Jennifer Blom</a>
               </div>
             </div>
           </div>
@@ -183,6 +182,7 @@
       <label for="additional_amount">Additional Amount:</label>
       <input v-model="additional_amount" type="text" class="form-control">
       <a class="btn btn-primary" v-on:click="updateGraph()">Update Graph</a>
+      <a class="btn btn-primary" v-on:click="paymentPlan()">Payment Plan</a>
       <h3>{{ message }}</h3>
       <ul id="thumbs" class="grid cs-style-3 portfolio">
         <div v-for="debt in debts">
@@ -469,7 +469,6 @@
       <div v-for="debt,$index in debts">
           <div class="form-group">
             <label class="col-sm-2 col-form-label">{{debt.name}} -- ({{debt.pretty_priority}} priority)</label>
-            <div v-if="debt.priority === 1"> {{ debt.total_balance }} - {{ additional_amount }}</div>
             <input v-model="debts[$index].min_amt_due" type="text" class="form-control">
             <small class="form-text text-muted">(Current Balance: {{debt.total_balance}})</small>
           </div>
@@ -484,9 +483,37 @@
   <div class="vue-component">
     <div class="container">
       <h2>{{ message }}</h2>
-      <p><a href="/#/add_debt">Add Debt</a></p>
-      <p><a href="/#/add_expense">Add Expense</a></p>
-      <p><a href="/#/add_income">Add Income</a></p>
+      <div class="row_settings">
+          <div class="card_settings">
+            <img class="card-img-top" src="img/header.jpeg" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">Add a Debt</h5>
+              <p class="card-text">Add more debts or review those that you have added and start planning on your payoff approach.</p>
+              <a href="/#/add_debt" class="btn btn-primary">Add Debt</a>
+              <a href="/#/all_debts" class="btn btn-primary">View All Debts</a>
+            </div>
+          </div>
+
+
+          <div class="card_settings">
+            <img class="card-img-top" src="img/header.jpeg" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">Add an Expense</h5>
+              <p class="card-text">Just subscibed to a new service? Add additional monthly expenses here.</p>
+              <a href="/#/add_expense" class="btn btn-primary">Add Expense</a>
+              <a href="/#/expenses" class="btn btn-primary">View All Expenses</a>
+            </div>
+          </div>
+
+          <div class="card_settings">
+            <img class="card-img-top" src="img/header.jpeg" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">Add an Income</h5>
+              <p class="card-text">Getting an additional amount per month in allowance? Add an additional income here.</p>
+              <a href="/#/add_income" class="btn btn-primary">Add Income</a>
+            </div>
+          </div>
+      </div>
     </div>
   </div>
 </template>

@@ -6165,3 +6165,23 @@ a.badge:focus {
 .affix {
   position: fixed;
 }
+
+.card_settings {
+    transition: 0.3s;
+    padding: 10px;
+}
+
+.card_settings .card-title{
+    padding-left: 5px ;
+    padding-top: 10px;
+}
+
+.card_settings .card-text{
+    color: #808080;
+    padding: 5px ;
+}
+
+.row_settings {
+    column-count: 3;
+    margin: 10px;
+}
