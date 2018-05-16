@@ -225,7 +225,7 @@ var AllDebtPage = {
         var data = [trace1,trace2];
             
         var layout = {
-          title: 'PayDownDebt', 
+          title: 'Pay Down Debt Timeline', 
         };
 
       Plotly.newPlot('myDiv', data, layout);
@@ -271,7 +271,7 @@ var AllDebtPage = {
     var data = [trace1,trace2];
         
     var layout = {
-      title: 'PayDownDebt', 
+      title: 'Pay Down Debt Timeline', 
     };
 
     Plotly.newPlot('myDiv', data, layout);

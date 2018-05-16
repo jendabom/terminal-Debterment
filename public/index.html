@@ -228,12 +228,30 @@
 
 <template id="expense-page">
   <div class="vue-component">
-    <h2>Monthly Expenses:</h2>
-    <div v-for="expense in expenses">
-      <div class="card" style="width: 18rem;">
-        <div class="card-body">
-          <h5 class="card-title">{{ expense.name }}</h5>
-          <p class="card-text"> $ {{ expense.monthly_payment }}</p>
+    <section id="inner-headline">
+      <div class="container">
+        <div class="row">
+          <div class="span4">
+            <div class="inner-heading">
+              <h2>Monthly Expenses:</h2>
+            </div>
+          </div>
+          <div class="span8">
+            <ul class="breadcrumb">
+              <li><a href="/">Home</a> <i class="icon-angle-right"></i></li>
+              <li class="active">Expenses</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="container">
+      <div v-for="expense in expenses">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">{{ expense.name }}</h5>
+            <p class="card-text"> $ {{ expense.monthly_payment }}</p>
+          </div>
         </div>
       </div>
     </div>
@@ -242,10 +260,28 @@
 
 <template id="income-page">
   <div class="vue-component">
-    <h2>Monthly incomes:</h2>
-    <div v-for="income in incomes">
-      <h4> {{ income.name }} </h2>
-      <p>$ {{ income.monthly_income }}</p>
+    <section id="inner-headline">
+      <div class="container">
+        <div class="row">
+          <div class="span4">
+            <div class="inner-heading">
+              <h2>Monthly Income:</h2>
+            </div>
+          </div>
+          <div class="span8">
+            <ul class="breadcrumb">
+              <li><a href="/">Home</a> <i class="icon-angle-right"></i></li>
+              <li class="active">Income</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="container">
+      <div v-for="income in incomes">
+        <h4> {{ income.name }} </h4>
+        <p>$ {{ income.monthly_income }}</p>
+      </div>
     </div>
   </div>
 </template>
