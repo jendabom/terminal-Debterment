@@ -196,11 +196,11 @@
     </section>
     <div class="container">
       <div id="myDiv"></div>
-      <label for="additional_amount">Additional Amount:</label>
-      <input v-model="additional_amount" type="text" class="form-control">
-      <a class="btn btn-primary" v-on:click="updateGraph()">Update Graph</a>
-      <a class="btn btn-primary" v-on:click="paymentPlan()">Payment Plan</a>
-      <h3>{{ message }}</h3>
+        <label for="additional_amount">Additional Amount:</label>
+        <input v-model="additional_amount" type="text" class="form-control">
+        <a class="btn btn-primary" v-on:click="updateGraph()">Update Graph</a>
+        <a class="btn btn-primary" v-on:click="paymentPlan()">Payment Plan</a>
+      <div class="row_settings"><h3>{{ message }}</h3></div>
       <ul id="thumbs" class="grid cs-style-3 portfolio">
         <div v-for="debt in debts">
           <li class="item-thumbs span3 design" data-id="id-0" data-type="web">
